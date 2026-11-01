@@ -28,7 +28,7 @@ MIN_SRC_W = 1600  # never upscale: a crop must carry this many source pixels
 # name: (source number, crop box)
 CROPS = {
     # atmosphere
-    "hall-rafters":     (1,  (0.00, 0.00, 1.00, 0.66)),
+    "hall-rafters":     (1,  (0.30, 0.42, 0.92, 1.00)),
     "hall-stock":       (5,  (0.40, 0.06, 1.00, 0.76)),
     "hall-aisle":       (2,  (0.00, 0.00, 1.00, 0.50)),
     "storefront":       (27, (0.07, 0.08, 0.73, 0.72)),
