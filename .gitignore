@@ -1,0 +1,17 @@
+# Raw phone photos: full-resolution sources show price signs, keep them out of the public repo
+rock park/
+
+# Local tooling
+tools/.venv/
+tools/node_modules/
+__pycache__/
+*.pyc
+
+# AI collaboration scratch (collab-board) and browser-automation captures
+.collab-board/
+.playwright-mcp/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
