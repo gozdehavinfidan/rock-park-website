@@ -104,9 +104,21 @@
       });
       tl.to({}, { duration: 0.6 }); // hold the last stone before releasing the pin
 
+      // light comes from the front: each face darkens as it turns away, so only the stone facing us holds focus
+      const faces = $$(".prism__face", prism);
+      const shadeFaces = () => {
+        const ry = gsap.getProperty(prism, "rotationY");
+        faces.forEach((f, i) => {
+          const off = Math.abs(((i * 60 + ry) % 360 + 540) % 360 - 180); // 0 = facing the viewer
+          f.style.setProperty("--shade", Math.min(1, off / 60) ** 1.1 * 0.92);
+        });
+      };
+      shadeFaces();
+
       // dots and glow follow the (scrub-smoothed) timeline, so they stay in step with the copy
       let current = 0;
       tl.eventCallback("onUpdate", () => {
+        shadeFaces();
         const idx = Math.min(specs.length - 1, Math.round(tl.time() / 1.2));
         if (idx === current) return;
         current = idx;
