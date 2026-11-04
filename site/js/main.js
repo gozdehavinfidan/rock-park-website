@@ -7,9 +7,6 @@
   const root = document.documentElement;
   const motionOK = () => root.classList.contains("motion") && !!window.gsap;
 
-  // Placeholder — replace with the real inbox before launch.
-  const CONTACT_EMAIL = "wholesale@example.com";
-
   /* ------------------------------------------------------------------
      Top app bar: solid after the hero edge, hides on scroll down
      ------------------------------------------------------------------ */
@@ -123,8 +120,6 @@
     $("#quick-tag").textContent = $(".card__tag", card).textContent;
     $("#quick-note").textContent = d.note;
     $("#quick-form").textContent = d.form;
-    $("#quick-sold").textContent = d.sold;
-    $("#quick-tiers").textContent = d.tiers;
     $("#quick-origin").textContent = d.origin;
     $("#quick-origin-row").hidden = !d.origin;
   };
@@ -143,95 +138,22 @@
   dlg.addEventListener("click", (e) => e.target === dlg && close()); // backdrop click
   dlg.addEventListener("close", () => current && $(".card__open", current).focus());
 
-  // "Request availability" → pre-check the stone in the form and jump there
-  const stoneMap = { "Amethyst Cathedrals": "Amethyst", "Labradorite Hearts": "Labradorite", "Amazonite Points": "Amazonite",
-    "Flower Agate": "Flower agate", "Rose Quartz": "Rose quartz", "Stone Spheres": "Spheres", "Soapstone Animals": "Carvings",
-    "Jasper & Mixed Towers": "Towers & points", "Rough Quartz Points": "Towers & points", "Chevron Amethyst": "Tumbled stones",
-    "Blue Apatite": "Tumbled stones", "Mexican Minerals": "Mexican minerals", "Coprolite": "Coprolite & fossils" };
-  $("#quick-request").addEventListener("click", () => {
-    const name = $(".card__name", current).textContent;
-    const val = stoneMap[name] || name;
-    const box = $$('input[name="stones"]').find((i) => i.value === val);
-    if (box) box.checked = true;
-    const msg = $("#f-message");
-    if (!msg.value.trim()) msg.value = `Interested in: ${name}
-`;
-    current = null;
-    close();
-    $("#inquiry").scrollIntoView({ behavior: motionOK() ? "smooth" : "auto" });
-    setTimeout(() => $("#f-name").focus({ preventScroll: true }), motionOK() ? 900 : 0);
-  });
-
   /* ------------------------------------------------------------------
-     Wholesale gauge: ticks are built here; motion.js scrubs the needle
+     Light / dark switch (light is the default; the choice is remembered)
      ------------------------------------------------------------------ */
-  const MAX_LB = 60;
-  const ticks = $(".gauge__ticks");
-  const NS = "http://www.w3.org/2000/svg";
-  const polar = (lb, r) => { const a = Math.PI * (1 - lb / MAX_LB); return [200 + r * Math.cos(a), 210 - r * Math.sin(a)]; };
-  for (let lb = 0; lb <= MAX_LB; lb += 4) {
-    const key = lb === 20 || lb === 44;
-    const g = document.createElementNS(NS, "g");
-    if (key) g.setAttribute("class", "is-key");
-    const [x1, y1] = polar(lb, 150), [x2, y2] = polar(lb, key ? 128 : 140);
-    g.innerHTML = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>` + (key ? `<text x="${polar(lb, 108)[0]}" y="${polar(lb, 108)[1] + 4}">${lb}</text>` : "");
-    ticks.appendChild(g);
-  }
-  const lbEl = $(".gauge__lb");
-  const tierCards = $$(".tier");
-  const tierPills = $$(".gauge__tier span");
-  window.RP = window.RP || {};
-  window.RP.setGauge = (lb) => {
-    const t = lb >= 44 ? "case" : lb >= 20 ? "flat" : "pick";
-    $(".gauge__needle").style.transform = `rotate(${-90 + (180 * lb) / MAX_LB}deg)`;
-    $(".gauge__fill").style.strokeDashoffset = 1 - lb / MAX_LB;
-    lbEl.textContent = Math.round(lb);
-    tierCards.forEach((c) => c.classList.toggle("is-active", c.dataset.tier === t));
-    tierPills.forEach((p) => p.classList.toggle("is-on", p.dataset.t === t));
+  const themeBtn = $(".bar__theme");
+  const themeMeta = $('meta[name="theme-color"]');
+  const applyTheme = (t) => {
+    root.setAttribute("data-theme", t);
+    themeBtn.setAttribute("aria-pressed", t === "dark");
+    themeMeta.setAttribute("content", t === "dark" ? "#141317" : "#fdf8fd");
   };
-  window.RP.setGauge(44); // static, informative state until (or unless) motion takes over
-
-  /* ------------------------------------------------------------------
-     Inquiry form → validated mailto
-     ------------------------------------------------------------------ */
-  const form = $("#inquiry-form");
-  const status = $("#form-status");
-  const fieldError = (input, msg) => {
-    const tf = input.closest(".tf");
-    tf.classList.toggle("is-error", !!msg);
-    input.setAttribute("aria-invalid", !!msg);
-    $(".tf__err", tf).textContent = msg || "";
-  };
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = form.elements.name, email = form.elements.email;
-    const nameErr = name.value.trim() ? "" : "Please add your name.";
-    const emailErr = email.value.trim() && email.checkValidity() ? "" : "Please add a valid email address.";
-    fieldError(name, nameErr);
-    fieldError(email, emailErr);
-    if (nameErr || emailErr) {
-      status.classList.add("is-error");
-      status.textContent = "Two quick details are missing above.";
-      (nameErr ? name : email).focus();
-      return;
-    }
-    const d = new FormData(form);
-    const body = [
-      `Name: ${d.get("name")}`,
-      `Business: ${d.get("business") || "-"}`,
-      `Email: ${d.get("email")}`,
-      `Type: ${d.get("type")}`,
-      `Stones: ${d.getAll("stones").join(", ") || "-"}`,
-      `Volume: ${d.get("volume")}`,
-      `Delivery: ${d.get("delivery")}`,
-      "",
-      d.get("message") || "",
-    ].join("\n");
-    location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Wholesale inquiry — " + (d.get("business") || d.get("name")))}&body=${encodeURIComponent(body)}`;
-    status.classList.remove("is-error");
-    status.textContent = "Your email app is opening with the details filled in. Thank you!";
+  applyTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light");
+  themeBtn.addEventListener("click", () => {
+    const t = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(t);
+    try { localStorage.setItem("rp-theme", t); } catch (e) { /* private mode: still switches for this visit */ }
   });
-  ["name", "email"].forEach((n) => form.elements[n].addEventListener("input", (e) => e.target.closest(".tf").classList.contains("is-error") && fieldError(e.target, "")));
 
   $("#year").textContent = new Date().getFullYear();
 })();

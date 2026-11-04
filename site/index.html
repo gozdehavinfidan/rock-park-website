@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rock Park — Minerals &amp; Crystals, Chosen by Hand</title>
-  <meta name="description" content="Rock Park is a desert mineral house: amethyst cathedrals, Madagascar celestite, Peruvian pyrite and more than twenty stones, laid out on open tables for collectors, designers and the trade.">
-  <meta name="theme-color" content="#141317">
-  <meta name="color-scheme" content="dark light">
+  <title>Rock Park — Crystal &amp; Mineral Shop in Quartzsite, Arizona</title>
+  <meta name="description" content="Rock Park is a crystal and mineral shop at 1270 W Main St, Quartzsite, Arizona. Geodes, polished stones, crystals and fossils on open tables. Walk in and choose by hand.">
+  <meta name="theme-color" content="#fdf8fd">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    /* Light by default; a saved choice wins. Runs before CSS so there is no flash. */
+    (function () { var t = "light"; try { t = localStorage.getItem("rp-theme") || t; } catch (e) {}
+      document.documentElement.setAttribute("data-theme", t); })();
+  </script>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Rock Park — Formed over millennia. Chosen by hand.">
-  <meta property="og:description" content="A desert mineral house for collectors, designers and the trade. Every piece seen and chosen by hand.">
-  <meta property="og:image" content="assets/img/storefront-1280.jpg">
+  <meta property="og:title" content="Rock Park — Crystal &amp; mineral shop in Quartzsite, Arizona">
+  <meta property="og:description" content="Geodes, polished stones, crystals and fossils on open tables. Walk in and choose by hand.">
+  <meta property="og:image" content="assets/img/hero-hall-1280.jpg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -26,21 +31,15 @@
       setTimeout(function () { if (!window.__rpMotion) d.classList.remove("motion"); }, 2500);
     })();
   </script>
-  <script type="importmap">
-    { "imports": {
-      "three": "./vendor/three/three.module.min.js",
-      "three/addons/": "./vendor/three/addons/"
-    } }
-  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Store",
     "name": "Rock Park",
-    "description": "Desert mineral house. Minerals and crystals chosen by hand for collectors, designers and the trade, offered in Pick, Flat and Case tiers.",
+    "description": "Crystal and mineral shop in Quartzsite, Arizona. Geodes, polished stones, crystals and fossils, chosen by hand.",
     "image": "assets/img/storefront-1280.jpg",
-    "address": { "@type": "PostalAddress", "streetAddress": "1270 [STREET]", "addressLocality": "[CITY]", "addressRegion": "[STATE]", "postalCode": "[ZIP]", "addressCountry": "US" },
-    "telephone": "[PHONE]"
+    "address": { "@type": "PostalAddress", "streetAddress": "1270 W Main St", "addressLocality": "Quartzsite", "addressRegion": "AZ", "postalCode": "85346", "addressCountry": "US" },
+    "hasMap": "https://maps.app.goo.gl/iwhTjjQartF8ofcB8?g_st=ic"
   }
   </script>
 </head>
@@ -59,13 +58,13 @@
       <ul>
         <li><a href="#specimens">Specimens</a></li>
         <li><a href="#collection">Collection</a></li>
-        <li><a href="#wholesale">Wholesale</a></li>
-        <li><a href="#warehouse">Warehouse</a></li>
+        <li><a href="#store">The store</a></li>
         <li><a href="#visit">Visit</a></li>
       </ul>
       <span class="bar__ind" aria-hidden="true"></span>
     </nav>
-    <a class="btn btn--filled bar__cta" href="#inquiry">Trade inquiry</a>
+    <button class="bar__theme" type="button" aria-pressed="false" aria-label="Dark mode"><svg class="bar__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg><svg class="bar__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg></button>
+    <a class="btn btn--filled bar__cta" href="#visit">Visit us</a>
     <button class="bar__toggle" type="button" aria-expanded="false" aria-controls="bar-nav" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
@@ -74,41 +73,24 @@
 
 <!-- ============================== HERO ============================== -->
 <section class="hero theme-night" id="top" aria-labelledby="hero-title">
-  <div class="hero__stage" aria-hidden="true">
-    <div class="hero__glow"></div>
-    <img class="hero__poster" src="assets/img/crystal-poster.webp" alt="" fetchpriority="high">
-    <canvas class="hero__canvas" id="crystal"></canvas>
-  </div>
+  <div class="hero__art" aria-hidden="true"><svg width="0" height="0" style="position:absolute" focusable="false"><defs><filter id="rp-agate-a" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.005 0.008" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="64" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="rp-agate-b" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.007 0.005" numOctaves="2" seed="11"/><feDisplacementMap in="SourceGraphic" scale="56" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="rp-druzy"><feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="1" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 18 -12.4" result="sp"/><feComposite in="sp" in2="SourceGraphic" operator="in" result="spk"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="spk"/></feMerge></filter></defs></svg><svg class="agate agate--a" viewBox="-560 -560 1120 1120" focusable="false"><g filter="url(#rp-agate-a)"><circle class="b0" r="500.0"/><circle class="b1" r="482.5"/><circle class="b2" r="450.0"/><circle class="b5" r="430.0"/><circle class="b3" r="400.0"/><circle class="b1" r="370.0"/><circle class="b5" r="350.0"/><circle class="b4" r="322.5"/><circle class="b2" r="290.0"/><circle class="b3" r="270.0"/><circle class="b5" r="245.0"/><circle class="b1" r="225.0"/><circle class="cav" r="200.0"/><path class="q1" d="M200.1 7.6L150.0 -1.6L200.0 -2.1Z"/><path class="q2" d="M199.9 -11.8L150.0 -1.6L200.0 -2.1Z"/><path class="q1" d="M197.8 30.8L133.7 14.9L198.8 22.1Z"/><path class="q2" d="M199.7 13.4L133.7 14.9L198.8 22.1Z"/><path class="q1" d="M192.1 56.2L131.6 33.1L193.9 48.8Z"/><path class="q2" d="M195.8 41.4L131.6 33.1L193.9 48.8Z"/><path class="q1" d="M180.7 86.1L140.8 60.5L183.8 78.9Z"/><path class="q2" d="M186.8 71.8L140.8 60.5L183.8 78.9Z"/><path class="q1" d="M167.3 109.9L105.3 63.4L171.4 103.1Z"/><path class="q2" d="M175.4 96.3L105.3 63.4L171.4 103.1Z"/><path class="q1" d="M150.6 132.1L102.9 80.9L157.2 123.6Z"/><path class="q2" d="M163.9 115.2L102.9 80.9L157.2 123.6Z"/><path class="q1" d="M127.9 154.2L95.2 102.9L135.8 146.8Z"/><path class="q2" d="M143.8 139.4L95.2 102.9L135.8 146.8Z"/><path class="q1" d="M112.9 165.3L72.8 97.4L119.7 160.2Z"/><path class="q2" d="M126.5 155.1L72.8 97.4L119.7 160.2Z"/><path class="q1" d="M88.3 179.7L72.5 132.8L95.8 175.6Z"/><path class="q2" d="M103.3 171.5L72.5 132.8L95.8 175.6Z"/><path class="q1" d="M54.4 192.7L47.2 141.1L63.4 189.7Z"/><path class="q2" d="M72.4 186.7L47.2 141.1L63.4 189.7Z"/><path class="q1" d="M29.9 198.0L27.6 138.4L39.1 196.1Z"/><path class="q2" d="M48.3 194.3L27.6 138.4L39.1 196.1Z"/><path class="q1" d="M10.7 199.9L14.5 152.9L18.9 199.1Z"/><path class="q2" d="M27.1 198.3L14.5 152.9L18.9 199.1Z"/><path class="q1" d="M-24.4 198.7L-11.0 138.5L-15.8 199.4Z"/><path class="q2" d="M-7.2 200.1L-11.0 138.5L-15.8 199.4Z"/><path class="q1" d="M-50.0 193.8L-28.7 134.8L-41.7 195.6Z"/><path class="q2" d="M-33.3 197.4L-28.7 134.8L-41.7 195.6Z"/><path class="q1" d="M-78.1 184.3L-45.0 119.9L-70.3 187.2Z"/><path class="q2" d="M-62.5 190.2L-45.0 119.9L-70.3 187.2Z"/><path class="q1" d="M-102.1 172.3L-62.6 119.6L-92.8 177.2Z"/><path class="q2" d="M-83.5 182.0L-62.6 119.6L-92.8 177.2Z"/><path class="q1" d="M-126.4 155.4L-84.9 116.9L-117.6 161.8Z"/><path class="q2" d="M-108.8 168.2L-84.9 116.9L-117.6 161.8Z"/><path class="q1" d="M-140.7 142.5L-92.7 103.9L-133.1 149.3Z"/><path class="q2" d="M-125.6 156.0L-92.7 103.9L-133.1 149.3Z"/><path class="q1" d="M-157.4 123.6L-104.0 88.3L-152.5 129.4Z"/><path class="q2" d="M-147.5 135.3L-104.0 88.3L-152.5 129.4Z"/><path class="q1" d="M-176.8 94.0L-107.8 64.1L-171.9 102.2Z"/><path class="q2" d="M-167.1 110.3L-107.8 64.1L-171.9 102.2Z"/><path class="q1" d="M-188.9 66.4L-132.8 54.2L-185.2 75.5Z"/><path class="q2" d="M-181.5 84.7L-132.8 54.2L-185.2 75.5Z"/><path class="q1" d="M-195.3 44.1L-128.1 35.1L-192.9 52.9Z"/><path class="q2" d="M-190.5 61.6L-128.1 35.1L-192.9 52.9Z"/><path class="q1" d="M-199.7 14.1L-117.4 13.7L-198.7 23.2Z"/><path class="q2" d="M-197.6 32.3L-117.4 13.7L-198.7 23.2Z"/><path class="q1" d="M-199.9 -11.9L-153.6 -1.5L-200.0 -2.0Z"/><path class="q2" d="M-200.1 7.9L-153.6 -1.5L-200.0 -2.0Z"/><path class="q1" d="M-196.4 -39.2L-115.0 -16.8L-197.9 -29.0Z"/><path class="q2" d="M-199.4 -18.8L-115.0 -16.8L-197.9 -29.0Z"/><path class="q1" d="M-190.7 -60.9L-135.8 -36.2L-193.3 -51.5Z"/><path class="q2" d="M-195.8 -42.0L-135.8 -36.2L-193.3 -51.5Z"/><path class="q1" d="M-182.6 -81.9L-127.7 -51.2L-185.6 -74.4Z"/><path class="q2" d="M-188.7 -66.9L-127.7 -51.2L-185.6 -74.4Z"/><path class="q1" d="M-168.2 -108.7L-133.1 -76.8L-173.2 -100.0Z"/><path class="q2" d="M-178.3 -91.2L-133.1 -76.8L-173.2 -100.0Z"/><path class="q1" d="M-152.5 -129.7L-115.4 -89.7L-157.9 -122.7Z"/><path class="q2" d="M-163.3 -115.8L-115.4 -89.7L-157.9 -122.7Z"/><path class="q1" d="M-126.5 -155.2L-101.8 -114.0L-133.2 -149.2Z"/><path class="q2" d="M-140.0 -143.1L-101.8 -114.0L-133.2 -149.2Z"/><path class="q1" d="M-106.4 -169.7L-69.3 -98.8L-114.9 -163.7Z"/><path class="q2" d="M-123.3 -157.8L-69.3 -98.8L-114.9 -163.7Z"/><path class="q1" d="M-80.1 -183.5L-63.8 -130.0L-88.1 -179.5Z"/><path class="q2" d="M-96.1 -175.6L-63.8 -130.0L-88.1 -179.5Z"/><path class="q1" d="M-58.4 -191.6L-41.4 -113.3L-68.6 -187.9Z"/><path class="q2" d="M-78.7 -184.2L-41.4 -113.3L-68.6 -187.9Z"/><path class="q1" d="M-36.7 -196.8L-33.4 -145.2L-44.8 -194.9Z"/><path class="q2" d="M-52.9 -193.1L-33.4 -145.2L-44.8 -194.9Z"/><path class="q1" d="M-7.3 -200.1L-11.5 -136.1L-16.8 -199.3Z"/><path class="q2" d="M-26.3 -198.5L-11.5 -136.1L-16.8 -199.3Z"/><path class="q1" d="M19.7 -199.2L8.4 -155.6L10.8 -199.7Z"/><path class="q2" d="M1.9 -200.2L8.4 -155.6L10.8 -199.7Z"/><path class="q1" d="M49.7 -194.0L26.1 -130.8L39.2 -196.1Z"/><path class="q2" d="M28.6 -198.2L26.1 -130.8L39.2 -196.1Z"/><path class="q1" d="M78.2 -184.3L46.8 -127.0L69.1 -187.7Z"/><path class="q2" d="M60.1 -191.0L46.8 -127.0L69.1 -187.7Z"/><path class="q1" d="M103.2 -171.6L72.2 -135.8L93.9 -176.6Z"/><path class="q2" d="M84.5 -181.6L72.2 -135.8L93.9 -176.6Z"/><path class="q1" d="M126.3 -155.4L71.4 -97.7L118.1 -161.4Z"/><path class="q2" d="M109.8 -167.5L71.4 -97.7L118.1 -161.4Z"/><path class="q1" d="M141.3 -141.7L94.9 -103.0L135.6 -147.0Z"/><path class="q2" d="M129.8 -152.4L94.9 -103.0L135.6 -147.0Z"/><path class="q1" d="M161.0 -118.9L119.9 -95.9L156.2 -125.0Z"/><path class="q2" d="M151.3 -131.0L119.9 -95.9L156.2 -125.0Z"/><path class="q1" d="M173.7 -99.6L126.4 -79.9L169.0 -106.9Z"/><path class="q2" d="M164.4 -114.2L126.4 -79.9L169.0 -106.9Z"/><path class="q1" d="M184.6 -77.3L141.4 -66.0L181.2 -84.6Z"/><path class="q2" d="M177.8 -91.9L141.4 -66.0L181.2 -84.6Z"/><path class="q1" d="M193.5 -51.3L135.3 -41.4L191.2 -58.5Z"/><path class="q2" d="M189.0 -65.8L135.3 -41.4L191.2 -58.5Z"/><path class="q1" d="M199.6 -14.8L130.6 -15.0L198.7 -22.8Z"/><path class="q2" d="M197.8 -30.7L130.6 -15.0L198.7 -22.8Z"/><circle class="druzy" r="124.0" filter="url(#rp-druzy)"/></g></svg><svg class="agate agate--b" viewBox="-560 -560 1120 1120" focusable="false"><g filter="url(#rp-agate-b)"><circle class="b0" r="500.0"/><circle class="b1" r="482.5"/><circle class="b2" r="450.0"/><circle class="b5" r="430.0"/><circle class="b3" r="400.0"/><circle class="b1" r="370.0"/><circle class="b5" r="350.0"/><circle class="b4" r="322.5"/><circle class="b2" r="290.0"/><circle class="b3" r="270.0"/><circle class="b5" r="245.0"/><circle class="b1" r="225.0"/><circle class="cav" r="200.0"/><path class="q1" d="M199.6 15.8L142.0 5.0L199.9 7.0Z"/><path class="q2" d="M200.2 -1.7L142.0 5.0L199.9 7.0Z"/><path class="q1" d="M195.5 43.4L120.4 19.9L197.3 32.6Z"/><path class="q2" d="M199.1 21.9L120.4 19.9L197.3 32.6Z"/><path class="q1" d="M187.3 70.5L129.7 43.1L189.8 63.1Z"/><path class="q2" d="M192.2 55.7L129.7 43.1L189.8 63.1Z"/><path class="q1" d="M177.7 92.1L129.0 60.1L181.3 84.4Z"/><path class="q2" d="M184.9 76.8L129.0 60.1L181.3 84.4Z"/><path class="q1" d="M158.8 121.8L122.0 86.4L163.2 115.6Z"/><path class="q2" d="M167.6 109.4L122.0 86.4L163.2 115.6Z"/><path class="q1" d="M139.4 143.6L97.8 92.9L145.0 137.8Z"/><path class="q2" d="M150.5 132.0L97.8 92.9L145.0 137.8Z"/><path class="q1" d="M121.5 159.1L99.6 118.6L128.6 153.1Z"/><path class="q2" d="M135.8 147.1L99.6 118.6L128.6 153.1Z"/><path class="q1" d="M93.6 177.0L62.0 104.4L102.1 172.0Z"/><path class="q2" d="M110.6 166.9L62.0 104.4L102.1 172.0Z"/><path class="q1" d="M78.3 184.2L60.5 127.7L85.6 180.7Z"/><path class="q2" d="M92.9 177.3L60.5 127.7L85.6 180.7Z"/><path class="q1" d="M44.6 195.2L36.6 129.6L54.3 192.5Z"/><path class="q2" d="M64.1 189.7L36.6 129.6L54.3 192.5Z"/><path class="q1" d="M22.7 199.0L24.2 145.1L32.9 197.3Z"/><path class="q2" d="M43.0 195.6L24.2 145.1L32.9 197.3Z"/><path class="q1" d="M-12.4 199.9L-1.3 121.9L-2.2 200.0Z"/><path class="q2" d="M8.1 200.1L-1.3 121.9L-2.2 200.0Z"/><path class="q1" d="M-35.6 197.0L-17.3 125.2L-27.4 198.1Z"/><path class="q2" d="M-19.2 199.3L-17.3 125.2L-27.4 198.1Z"/><path class="q1" d="M-58.0 191.6L-35.9 137.2L-50.6 193.5Z"/><path class="q2" d="M-43.3 195.4L-35.9 137.2L-50.6 193.5Z"/><path class="q1" d="M-78.9 184.0L-51.4 135.4L-71.0 187.0Z"/><path class="q2" d="M-63.2 189.9L-51.4 135.4L-71.0 187.0Z"/><path class="q1" d="M-110.5 166.9L-60.5 101.0L-102.8 171.6Z"/><path class="q2" d="M-95.0 176.2L-60.5 101.0L-102.8 171.6Z"/><path class="q1" d="M-135.7 147.3L-74.2 89.8L-127.4 154.1Z"/><path class="q2" d="M-119.1 161.0L-74.2 89.8L-127.4 154.1Z"/><path class="q1" d="M-148.3 134.4L-104.9 103.3L-142.5 140.3Z"/><path class="q2" d="M-136.7 146.2L-104.9 103.3L-142.5 140.3Z"/><path class="q1" d="M-164.9 113.6L-117.6 89.6L-159.1 121.2Z"/><path class="q2" d="M-153.2 128.9L-117.6 89.6L-159.1 121.2Z"/><path class="q1" d="M-182.3 82.8L-109.0 55.7L-178.1 91.0Z"/><path class="q2" d="M-173.9 99.1L-109.0 55.7L-178.1 91.0Z"/><path class="q1" d="M-190.5 61.4L-116.5 42.6L-187.8 68.7Z"/><path class="q2" d="M-185.2 76.0L-116.5 42.6L-187.8 68.7Z"/><path class="q1" d="M-197.6 32.4L-116.9 25.3L-195.5 42.4Z"/><path class="q2" d="M-193.3 52.3L-116.9 25.3L-195.5 42.4Z"/><path class="q1" d="M-200.1 6.2L-136.5 9.8L-199.5 14.3Z"/><path class="q2" d="M-198.9 22.4L-136.5 9.8L-199.5 14.3Z"/><path class="q1" d="M-198.9 -23.7L-142.4 -9.6L-199.5 -13.5Z"/><path class="q2" d="M-200.2 -3.2L-142.4 -9.6L-199.5 -13.5Z"/><path class="q1" d="M-193.5 -51.3L-136.9 -29.9L-195.4 -42.6Z"/><path class="q2" d="M-197.3 -34.0L-136.9 -29.9L-195.4 -42.6Z"/><path class="q1" d="M-185.1 -76.2L-119.3 -43.5L-187.9 -68.6Z"/><path class="q2" d="M-190.7 -61.0L-119.3 -43.5L-187.9 -68.6Z"/><path class="q1" d="M-176.7 -94.3L-135.8 -63.5L-181.2 -84.7Z"/><path class="q2" d="M-185.7 -75.1L-135.8 -63.5L-181.2 -84.7Z"/><path class="q1" d="M-157.4 -123.8L-122.7 -86.6L-163.4 -115.4Z"/><path class="q2" d="M-169.3 -106.9L-122.7 -86.6L-163.4 -115.4Z"/><path class="q1" d="M-138.7 -144.3L-93.9 -89.5L-144.7 -138.0Z"/><path class="q2" d="M-150.7 -131.7L-93.9 -89.5L-144.7 -138.0Z"/><path class="q1" d="M-122.8 -158.0L-96.9 -115.5L-128.6 -153.2Z"/><path class="q2" d="M-134.4 -148.3L-96.9 -115.5L-128.6 -153.2Z"/><path class="q1" d="M-94.2 -176.7L-66.4 -111.8L-102.2 -171.9Z"/><path class="q2" d="M-110.2 -167.2L-66.4 -111.8L-102.2 -171.9Z"/><path class="q1" d="M-68.6 -188.2L-54.3 -127.6L-78.3 -184.1Z"/><path class="q2" d="M-87.9 -179.9L-54.3 -127.6L-78.3 -184.1Z"/><path class="q1" d="M-45.6 -194.9L-39.6 -142.1L-53.7 -192.7Z"/><path class="q2" d="M-61.8 -190.4L-39.6 -142.1L-53.7 -192.7Z"/><path class="q1" d="M-23.9 -198.8L-24.4 -144.3L-33.3 -197.2Z"/><path class="q2" d="M-42.7 -195.6L-24.4 -144.3L-33.3 -197.2Z"/><path class="q1" d="M1.4 -200.2L-4.6 -139.2L-6.5 -199.9Z"/><path class="q2" d="M-14.5 -199.6L-4.6 -139.2L-6.5 -199.9Z"/><path class="q1" d="M37.5 -196.7L20.2 -140.4L28.5 -198.0Z"/><path class="q2" d="M19.5 -199.3L20.2 -140.4L28.5 -198.0Z"/><path class="q1" d="M60.0 -191.0L30.8 -115.8L51.4 -193.3Z"/><path class="q2" d="M42.7 -195.6L30.8 -115.8L51.4 -193.3Z"/><path class="q1" d="M89.5 -179.1L55.0 -124.3L80.9 -182.9Z"/><path class="q2" d="M72.4 -186.7L55.0 -124.3L80.9 -182.9Z"/><path class="q1" d="M108.8 -168.1L78.4 -134.0L101.0 -172.6Z"/><path class="q2" d="M93.2 -177.2L78.4 -134.0L101.0 -172.6Z"/><path class="q1" d="M128.5 -153.6L93.8 -124.5L120.3 -159.7Z"/><path class="q2" d="M112.2 -165.9L93.8 -124.5L120.3 -159.7Z"/><path class="q1" d="M148.0 -134.9L96.5 -97.3L140.9 -142.0Z"/><path class="q2" d="M133.8 -149.0L96.5 -97.3L140.9 -142.0Z"/><path class="q1" d="M167.1 -110.3L115.6 -84.2L161.7 -117.8Z"/><path class="q2" d="M156.2 -125.3L115.6 -84.2L161.7 -117.8Z"/><path class="q1" d="M179.9 -87.7L109.8 -59.0L176.2 -94.7Z"/><path class="q2" d="M172.5 -101.6L109.8 -59.0L176.2 -94.7Z"/><path class="q1" d="M190.4 -61.8L136.9 -50.9L187.4 -69.7Z"/><path class="q2" d="M184.5 -77.7L136.9 -50.9L187.4 -69.7Z"/><path class="q1" d="M197.7 -31.8L132.8 -27.9L195.7 -41.1Z"/><path class="q2" d="M193.8 -50.3L132.8 -27.9L195.7 -41.1Z"/><path class="q1" d="M200.1 -5.2L119.2 -8.5L199.5 -14.2Z"/><path class="q2" d="M198.9 -23.2L119.2 -8.5L199.5 -14.2Z"/><circle class="druzy" r="124.0" filter="url(#rp-druzy)"/></g></svg></div>
   <div class="wrap hero__content">
-    <p class="eyebrow" data-hero>A desert mineral house</p>
-    <h1 class="hero__title" id="hero-title" data-split>Formed over millennia. <em>Chosen by hand.</em></h1>
-    <p class="hero__lede" data-hero>Amethyst cathedrals, Madagascar celestite, Peruvian pyrite and more than twenty other stones, laid out on open tables for collectors, designers and the shops that serve them.</p>
+    <p class="eyebrow" data-hero>Fine minerals &amp; crystals · Quartzsite, Arizona</p>
+    <h1 class="hero__title" id="hero-title" data-split>Rare beauty,<br> <em>formed over millennia.</em></h1>
+    <p class="hero__lede" data-hero>Exceptional geodes, crystals and polished specimens from Madagascar, Peru, Mexico and beyond. Every piece is selected by hand for its colour, character and presence.</p>
     <div class="hero__ctas" data-hero>
       <a class="btn btn--filled" href="#collection">Explore the collection <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-      <a class="btn btn--outlined" href="#visit">Plan a visit</a>
+      <a class="btn btn--outlined" href="#visit">Plan your visit</a>
     </div>
-    <ul class="hero__facts" data-hero>
-      <li><b>20+</b><span>Varieties on the floor</span></li>
-      <li><b>3</b><span>Continents of origin</span></li>
-      <li><b>3</b><span>Trade tiers</span></li>
-    </ul>
+    <p class="hero__visit" data-hero><i aria-hidden="true"></i><span>1270 W Main St, Quartzsite, AZ</span><span class="hero__visit-sep" aria-hidden="true">·</span><span>Open <span class="ph">[Mon–Sat 9–5]</span></span><a class="hero__visit-link" href="https://maps.app.goo.gl/iwhTjjQartF8ofcB8?g_st=ic" target="_blank" rel="noopener">Directions <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></p>
   </div>
-  <a class="hero__cue" href="#manifesto" aria-label="Scroll to the story"><span></span></a>
+  <a class="hero__cue" href="#specimens" aria-label="Scroll to the specimens"><span></span></a>
 </section>
 
 <!-- ============================== MARQUEE ============================== -->
 <div class="marquee theme-night" aria-hidden="true">
-  <div class="marquee__track"><div class="marquee__group"><span>Amethyst</span><i></i><span>Celestite</span><i></i><span>Septarian</span><i></i><span>Labradorite</span><i></i><span>Peruvian Pyrite</span><i></i><span>Amazonite</span><i></i><span>Rose Quartz</span><i></i><span>Flower Agate</span><i></i><span>Blue Apatite</span><i></i><span>Selenite</span><i></i><span>Chevron Amethyst</span><i></i><span>Coprolite</span><i></i></div><div class="marquee__group"><span>Amethyst</span><i></i><span>Celestite</span><i></i><span>Septarian</span><i></i><span>Labradorite</span><i></i><span>Peruvian Pyrite</span><i></i><span>Amazonite</span><i></i><span>Rose Quartz</span><i></i><span>Flower Agate</span><i></i><span>Blue Apatite</span><i></i><span>Selenite</span><i></i><span>Chevron Amethyst</span><i></i><span>Coprolite</span><i></i></div></div>
+  <div class="marquee__track"><div class="marquee__group"><span style="--a:#8a55cf;--b:#c9a2f2">Amethyst</span><i></i><span style="--a:#4f93d6;--b:#a9d2f4">Celestite</span><i></i><span style="--a:#c3812f;--b:#6e4526">Septarian</span><i></i><span style="--a:#2f7d9c;--b:#d1a93c">Labradorite</span><i></i><span style="--a:#b8932c;--b:#e2c870">Peruvian Pyrite</span><i></i><span style="--a:#23a291;--b:#8fd8c8">Amazonite</span><i></i><span style="--a:#df7d9e;--b:#f4bccd">Rose Quartz</span><i></i><span style="--a:#d98275;--b:#efc9a8">Flower Agate</span><i></i><span style="--a:#1d86ad;--b:#4fc3c7">Blue Apatite</span><i></i><span style="--a:#9d93b5;--b:#e4dff0">Selenite</span><i></i><span style="--a:#6f4ba3;--b:#cdbfe6">Chevron Amethyst</span><i></i><span style="--a:#b04f28;--b:#7a3a21">Coprolite</span><i></i></div><div class="marquee__group"><span style="--a:#8a55cf;--b:#c9a2f2">Amethyst</span><i></i><span style="--a:#4f93d6;--b:#a9d2f4">Celestite</span><i></i><span style="--a:#c3812f;--b:#6e4526">Septarian</span><i></i><span style="--a:#2f7d9c;--b:#d1a93c">Labradorite</span><i></i><span style="--a:#b8932c;--b:#e2c870">Peruvian Pyrite</span><i></i><span style="--a:#23a291;--b:#8fd8c8">Amazonite</span><i></i><span style="--a:#df7d9e;--b:#f4bccd">Rose Quartz</span><i></i><span style="--a:#d98275;--b:#efc9a8">Flower Agate</span><i></i><span style="--a:#1d86ad;--b:#4fc3c7">Blue Apatite</span><i></i><span style="--a:#9d93b5;--b:#e4dff0">Selenite</span><i></i><span style="--a:#6f4ba3;--b:#cdbfe6">Chevron Amethyst</span><i></i><span style="--a:#b04f28;--b:#7a3a21">Coprolite</span><i></i></div></div>
 </div>
-
-<!-- ============================== MANIFESTO ============================== -->
-<section class="manifesto theme-night" id="manifesto" aria-label="The Rock Park way">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>The Rock Park way</p>
-    <p class="manifesto__text" data-words>No glass cases. No velvet ropes. Just <em>long tables of stone</em> in honest light, so every piece is seen, held and chosen before it leaves with you.</p>
-    <p class="manifesto__aside" data-reveal>Walk the aisles and choose by eye and by hand. Private collectors and trade buyers are welcome at the same tables, and the floor changes with every shipment.</p>
-  </div>
-</section>
 
 <!-- ============================== SPECIMEN THEATRE ============================== -->
 <section class="theatre theme-night" id="specimens" aria-labelledby="theatre-title">
@@ -122,50 +104,59 @@
         <li class="spec" style="--glow:#8b5cd6" data-index="0">
           <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/spot-amethyst-640.avif 640w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/spot-amethyst-640.webp 640w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/spot-amethyst-640.jpg" alt="Violet crystal wall inside an amethyst cathedral geode" loading="lazy" decoding="async"></picture></figure>
           <div class="spec__text">
-            <p class="spec__num">01 <span>/ 05</span></p>
+            <p class="spec__num">01 <span>/ 06</span></p>
             <h3 class="spec__name">Amethyst cathedral</h3>
             <p class="spec__line">Cut open to show deep violet crystal walls. From tabletop to floor-standing, each one selected by hand.</p>
-            <dl class="spec__facts"><div><dt>Form</dt><dd>Cathedral geode</dd></div><div><dt>Offered</dt><dd>Individually</dd></div></dl>
+            <dl class="spec__facts"><div><dt>Form</dt><dd>Cathedral geode</dd></div></dl>
           </div>
         </li>
         <li class="spec" style="--glow:#7fa6dc" data-index="1">
-          <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/spot-celestite-640.avif 640w, assets/img/spot-celestite-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/spot-celestite-640.webp 640w, assets/img/spot-celestite-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/spot-celestite-1280.jpg" alt="Celestite geode with pale blue crystals " loading="lazy" decoding="async"></picture></figure>
+          <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/celestite-640.avif 640w, assets/img/celestite-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/celestite-640.webp 640w, assets/img/celestite-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/celestite-1280.jpg" alt="Pale blue celestite crystal cluster" loading="lazy" decoding="async"></picture></figure>
           <div class="spec__text">
-            <p class="spec__num">02 <span>/ 05</span></p>
+            <p class="spec__num">02 <span>/ 06</span></p>
             <h3 class="spec__name">Celestite</h3>
             <p class="spec__line">Sky-blue crystal pockets in pale rock, palm-sized up to multi-kilo geodes.</p>
-            <dl class="spec__facts"><div><dt>Origin</dt><dd>Madagascar</dd></div><div><dt>Offered</dt><dd>By weight</dd></div></dl>
+            <dl class="spec__facts"><div><dt>Origin</dt><dd>Madagascar</dd></div></dl>
           </div>
         </li>
         <li class="spec" style="--glow:#c79a5a" data-index="2">
-          <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/spot-septarian-640.avif 640w, assets/img/spot-septarian-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/spot-septarian-640.webp 640w, assets/img/spot-septarian-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/spot-septarian-1280.jpg" alt="Polished septarian freeform " loading="lazy" decoding="async"></picture></figure>
+          <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/septarian-640.avif 640w, assets/img/septarian-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/septarian-640.webp 640w, assets/img/septarian-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/septarian-1280.jpg" alt="Polished black septarian nodules with druzy pockets" loading="lazy" decoding="async"></picture></figure>
           <div class="spec__text">
-            <p class="spec__num">03 <span>/ 05</span></p>
+            <p class="spec__num">03 <span>/ 06</span></p>
             <h3 class="spec__name">Septarian</h3>
             <p class="spec__line">Black calcite and druzy pockets set inside polished septarian nodules.</p>
-            <dl class="spec__facts"><div><dt>Form</dt><dd>Polished freeform</dd></div><div><dt>Offered</dt><dd>By weight</dd></div></dl>
+            <dl class="spec__facts"><div><dt>Form</dt><dd>Polished freeform</dd></div></dl>
           </div>
         </li>
         <li class="spec" style="--glow:#3fa7b5" data-index="3">
           <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/spot-heart-640.avif 640w, assets/img/spot-heart-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/spot-heart-640.webp 640w, assets/img/spot-heart-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/spot-heart-1280.jpg" alt="Polished labradorite heart " loading="lazy" decoding="async"></picture></figure>
           <div class="spec__text">
-            <p class="spec__num">04 <span>/ 05</span></p>
+            <p class="spec__num">04 <span>/ 06</span></p>
             <h3 class="spec__name">Labradorite heart</h3>
             <p class="spec__line">Hand-polished hearts with blue and gold flash that moves as they turn.</p>
-            <dl class="spec__facts"><div><dt>Form</dt><dd>Polished heart</dd></div><div><dt>Offered</dt><dd>By weight</dd></div></dl>
+            <dl class="spec__facts"><div><dt>Form</dt><dd>Polished heart</dd></div></dl>
           </div>
         </li>
         <li class="spec" style="--glow:#b9874e" data-index="4">
           <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/spot-sphere-640.avif 640w, assets/img/spot-sphere-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/spot-sphere-640.webp 640w, assets/img/spot-sphere-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/spot-sphere-1280.jpg" alt="Large polished stone sphere on an iron stand" loading="lazy" decoding="async"></picture></figure>
           <div class="spec__text">
-            <p class="spec__num">05 <span>/ 05</span></p>
+            <p class="spec__num">05 <span>/ 06</span></p>
             <h3 class="spec__name">Stone sphere</h3>
             <p class="spec__line">Banded stone spheres on wrought-iron stands, from palm-sized to centrepiece.</p>
-            <dl class="spec__facts"><div><dt>Form</dt><dd>Sphere & stand</dd></div><div><dt>Offered</dt><dd>Individually</dd></div></dl>
+            <dl class="spec__facts"><div><dt>Form</dt><dd>Sphere & stand</dd></div></dl>
+          </div>
+        </li>
+        <li class="spec" style="--glow:#c9a227" data-index="5">
+          <figure class="spec__plate"><picture><source type="image/avif" srcset="assets/img/macro-pyrite-640.avif 640w, assets/img/macro-pyrite-1280.avif 1280w" sizes="(max-width: 900px) 80vw, 40vw"><source type="image/webp" srcset="assets/img/macro-pyrite-640.webp 640w, assets/img/macro-pyrite-1280.webp 1280w" sizes="(max-width: 900px) 80vw, 40vw"><img src="assets/img/macro-pyrite-1280.jpg" alt="Glittering cubes of raw Peruvian pyrite" loading="lazy" decoding="async"></picture></figure>
+          <div class="spec__text">
+            <p class="spec__num">06 <span>/ 06</span></p>
+            <h3 class="spec__name">Peruvian pyrite</h3>
+            <p class="spec__line">Brassy, mirror-faced cubes grown in clusters, straight from the mines of Peru.</p>
+            <dl class="spec__facts"><div><dt>Origin</dt><dd>Peru</dd></div></dl>
           </div>
         </li>
       </ol>
-      <div class="theatre__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="theatre__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     </div>
   </div>
 </section>
@@ -178,7 +169,7 @@
         <p class="eyebrow" data-reveal>The collection</p>
         <h2 class="h-display" id="collection-title" data-reveal>On the floor <em>this week</em></h2>
       </div>
-      <p class="lede" data-reveal>A glimpse of what's on the tables. The selection shifts with every shipment, so tell us what you're looking for and we'll set pieces aside.</p>
+      <p class="lede" data-reveal>A glimpse of what's on the tables. New pieces arrive with every shipment, so come by and see what's new.</p>
     </div>
     <div class="chips" role="group" aria-label="Filter the collection">
       <button class="chip" type="button" aria-pressed="true" data-filter="all">All<span class="chip__count">16</span></button>
@@ -191,131 +182,115 @@
     </div>
     <p class="sr-only" id="grid-status" role="status" aria-live="polite"></p>
     <ul class="grid" id="grid">
-      <li class="card card--wide" data-cat="geodes" data-img="amethyst-cathedrals" data-form="Cathedral geode" data-sold="Individually" data-tiers="Pick" data-origin="" data-note="Floor-standing geodes cut open to deep violet crystal walls. Each one is chosen by hand, and the selection changes week to week.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/amethyst-cathedrals-640.avif 640w, assets/img/amethyst-cathedrals-1280.avif 1280w, assets/img/amethyst-cathedrals-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/amethyst-cathedrals-640.webp 640w, assets/img/amethyst-cathedrals-1280.webp 1280w, assets/img/amethyst-cathedrals-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/amethyst-cathedrals-1280.jpg" alt="A row of amethyst cathedral geodes lit by afternoon sun" loading="lazy" decoding="async"></picture><span class="card__tag">Geode</span></div>
+      <li class="card" data-cat="geodes" data-img="amethyst-cathedrals" data-form="Cathedral geode" data-origin="" data-note="Floor-standing geodes cut open to deep violet crystal walls. Each one is chosen by hand, and the selection changes week to week.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/amethyst-cathedrals-640.avif 640w, assets/img/amethyst-cathedrals-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/amethyst-cathedrals-640.webp 640w, assets/img/amethyst-cathedrals-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/amethyst-cathedrals-1280.jpg" alt="A row of amethyst cathedral geodes lit by afternoon sun" loading="lazy" decoding="async"></picture><span class="card__tag">Geode</span></div>
         <div class="card__body">
           <h3 class="card__name">Amethyst Cathedrals</h3>
-          <p class="card__meta"><span>Individually</span><span>Pick</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Amethyst Cathedrals"></button>
       </li>
-      <li class="card" data-cat="geodes" data-img="celestite" data-form="Geode &amp; cluster" data-sold="By weight" data-tiers="Flat · Case" data-origin="Madagascar" data-note="Sky-blue crystal pockets in pale rock, from palm-sized pieces up to multi-kilo geodes.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/celestite-640.avif 640w, assets/img/celestite-1280.avif 1280w, assets/img/celestite-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/celestite-640.webp 640w, assets/img/celestite-1280.webp 1280w, assets/img/celestite-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/celestite-1280.jpg" alt="Pale blue celestite geodes on a wooden table" loading="lazy" decoding="async"></picture><span class="card__tag">Cluster</span></div>
+      <li class="card" data-cat="geodes" data-img="celestite" data-form="Geode &amp; cluster" data-origin="Madagascar" data-note="Sky-blue crystal pockets in pale rock, from palm-sized pieces up to multi-kilo geodes.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/celestite-640.avif 640w, assets/img/celestite-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/celestite-640.webp 640w, assets/img/celestite-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/celestite-1280.jpg" alt="Pale blue celestite geodes on a wooden table" loading="lazy" decoding="async"></picture><span class="card__tag">Cluster</span></div>
         <div class="card__body">
           <h3 class="card__name">Celestite</h3><span class="card__origin">Madagascar</span>
-          <p class="card__meta"><span>By weight</span><span>Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Celestite"></button>
       </li>
-      <li class="card" data-cat="freeforms" data-img="septarian" data-form="Polished freeform" data-sold="By weight" data-tiers="Flat · Case" data-origin="" data-note="Polished septarian nodules with black calcite and sparkling druzy pockets.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/septarian-640.avif 640w, assets/img/septarian-1280.avif 1280w, assets/img/septarian-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/septarian-640.webp 640w, assets/img/septarian-1280.webp 1280w, assets/img/septarian-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/septarian-1280.jpg" alt="Polished black septarian freeforms with druzy pockets" loading="lazy" decoding="async"></picture><span class="card__tag">Freeform</span></div>
+      <li class="card" data-cat="freeforms" data-img="septarian" data-form="Polished freeform" data-origin="" data-note="Polished septarian nodules with black calcite and sparkling druzy pockets.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/septarian-640.avif 640w, assets/img/septarian-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/septarian-640.webp 640w, assets/img/septarian-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/septarian-1280.jpg" alt="Polished black septarian freeforms with druzy pockets" loading="lazy" decoding="async"></picture><span class="card__tag">Freeform</span></div>
         <div class="card__body">
           <h3 class="card__name">Septarian</h3>
-          <p class="card__meta"><span>By weight</span><span>Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Septarian"></button>
       </li>
-      <li class="card" data-cat="freeforms" data-img="labradorite" data-form="Polished heart" data-sold="By weight" data-tiers="Flat · Case" data-origin="" data-note="Large hand-polished hearts that flash blue and gold as they turn in the light.">
+      <li class="card" data-cat="freeforms" data-img="labradorite" data-form="Polished heart" data-origin="" data-note="Large hand-polished hearts that flash blue and gold as they turn in the light.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/labradorite-640.avif 640w, assets/img/labradorite-1280.avif 1280w, assets/img/labradorite-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/labradorite-640.webp 640w, assets/img/labradorite-1280.webp 1280w, assets/img/labradorite-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/labradorite-1280.jpg" alt="Large polished labradorite hearts in a box" loading="lazy" decoding="async"></picture><span class="card__tag">Hearts</span></div>
         <div class="card__body">
           <h3 class="card__name">Labradorite Hearts</h3>
-          <p class="card__meta"><span>By weight</span><span>Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Labradorite Hearts"></button>
       </li>
-      <li class="card" data-cat="freeforms" data-img="flower-agate" data-form="Polished freeform" data-sold="By weight" data-tiers="Flat · Case" data-origin="" data-note="Milky agate with pink and cream blossom inclusions, polished into palm and shelf sizes.">
+      <li class="card" data-cat="freeforms" data-img="flower-agate" data-form="Polished freeform" data-origin="" data-note="Milky agate with pink and cream blossom inclusions, polished into palm and shelf sizes.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/flower-agate-640.avif 640w, assets/img/flower-agate-1280.avif 1280w, assets/img/flower-agate-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/flower-agate-640.webp 640w, assets/img/flower-agate-1280.webp 1280w, assets/img/flower-agate-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/flower-agate-1280.jpg" alt="Polished flower agate freeforms with blossom inclusions" loading="lazy" decoding="async"></picture><span class="card__tag">Freeform</span></div>
         <div class="card__body">
           <h3 class="card__name">Flower Agate</h3>
-          <p class="card__meta"><span>By weight</span><span>Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Flower Agate"></button>
       </li>
-      <li class="card card--wide" data-cat="freeforms" data-img="spheres" data-form="Sphere &amp; stand" data-sold="Individually" data-tiers="Pick" data-origin="" data-note="Jasper, agate and banded stone spheres in every size, with wrought-iron stands available.">
+      <li class="card card--wide" data-cat="freeforms" data-img="spheres" data-form="Sphere &amp; stand" data-origin="" data-note="Jasper, agate and banded stone spheres in every size, with wrought-iron stands available.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/spheres-640.avif 640w, assets/img/spheres-1280.avif 1280w, assets/img/spheres-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/spheres-640.webp 640w, assets/img/spheres-1280.webp 1280w, assets/img/spheres-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/spheres-1280.jpg" alt="Polished stone spheres on wrought-iron stands" loading="lazy" decoding="async"></picture><span class="card__tag">Spheres</span></div>
         <div class="card__body">
           <h3 class="card__name">Stone Spheres</h3>
-          <p class="card__meta"><span>Individually</span><span>Pick</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Stone Spheres"></button>
       </li>
-      <li class="card" data-cat="points" data-img="amazonite" data-form="Polished point" data-sold="By weight" data-tiers="Flat · Case" data-origin="" data-note="Teal amazonite points with white feldspar veining, standing in open boxes.">
+      <li class="card" data-cat="points" data-img="amazonite" data-form="Polished point" data-origin="" data-note="Teal amazonite points with white feldspar veining, standing in open boxes.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/amazonite-640.avif 640w, assets/img/amazonite-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/amazonite-640.webp 640w, assets/img/amazonite-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/amazonite-1280.jpg" alt="Teal amazonite points standing in a box" loading="lazy" decoding="async"></picture><span class="card__tag">Points</span></div>
         <div class="card__body">
           <h3 class="card__name">Amazonite Points</h3>
-          <p class="card__meta"><span>By weight</span><span>Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Amazonite Points"></button>
       </li>
-      <li class="card" data-cat="points" data-img="towers" data-form="Polished tower" data-sold="Individually" data-tiers="Pick" data-origin="" data-note="Red jasper, sodalite and mixed-stone towers in a wide range of heights.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/towers-640.avif 640w, assets/img/towers-1280.avif 1280w, assets/img/towers-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/towers-640.webp 640w, assets/img/towers-1280.webp 1280w, assets/img/towers-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/towers-1280.jpg" alt="Polished red jasper and mixed stone towers" loading="lazy" decoding="async"></picture><span class="card__tag">Towers</span></div>
+      <li class="card" data-cat="points" data-img="towers" data-form="Polished tower" data-origin="" data-note="Red jasper, sodalite and mixed-stone towers in a wide range of heights.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/towers-640.avif 640w, assets/img/towers-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/towers-640.webp 640w, assets/img/towers-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/towers-1280.jpg" alt="Polished red jasper and mixed stone towers" loading="lazy" decoding="async"></picture><span class="card__tag">Towers</span></div>
         <div class="card__body">
           <h3 class="card__name">Jasper &amp; Mixed Towers</h3>
-          <p class="card__meta"><span>Individually</span><span>Pick</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Jasper &amp; Mixed Towers"></button>
       </li>
-      <li class="card" data-cat="points" data-img="quartz-points" data-form="Natural point" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="" data-note="Clear rough quartz points, offered loose by the box.">
+      <li class="card" data-cat="points" data-img="quartz-points" data-form="Natural point" data-origin="" data-note="Clear rough quartz points in every size.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/quartz-points-640.avif 640w, assets/img/quartz-points-1280.avif 1280w, assets/img/quartz-points-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/quartz-points-640.webp 640w, assets/img/quartz-points-1280.webp 1280w, assets/img/quartz-points-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/quartz-points-1280.jpg" alt="A box of rough clear quartz crystal points" loading="lazy" decoding="async"></picture><span class="card__tag">Rough</span></div>
         <div class="card__body">
           <h3 class="card__name">Rough Quartz Points</h3>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Rough Quartz Points"></button>
       </li>
-      <li class="card" data-cat="tumbled" data-img="rose-quartz" data-form="Tumbled stone" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="" data-note="Soft pink tumbled rose quartz, sorted into open bins.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/rose-quartz-640.avif 640w, assets/img/rose-quartz-1280.avif 1280w, assets/img/rose-quartz-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/rose-quartz-640.webp 640w, assets/img/rose-quartz-1280.webp 1280w, assets/img/rose-quartz-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/rose-quartz-1280.jpg" alt="Tumbled pink rose quartz in boxes" loading="lazy" decoding="async"></picture><span class="card__tag">Tumbled</span></div>
+      <li class="card" data-cat="tumbled" data-img="rose-quartz" data-form="Tumbled stone" data-origin="" data-note="Soft pink tumbled rose quartz, sorted into open bins.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/rose-quartz-640.avif 640w, assets/img/rose-quartz-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/rose-quartz-640.webp 640w, assets/img/rose-quartz-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/rose-quartz-1280.jpg" alt="Tumbled pink rose quartz in boxes" loading="lazy" decoding="async"></picture><span class="card__tag">Tumbled</span></div>
         <div class="card__body">
           <h3 class="card__name">Rose Quartz</h3>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Rose Quartz"></button>
       </li>
-      <li class="card" data-cat="tumbled" data-img="chevron-amethyst" data-form="Tumbled stone" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="" data-note="Banded purple-and-white amethyst, tumbled smooth.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/chevron-amethyst-640.avif 640w, assets/img/chevron-amethyst-1280.avif 1280w, assets/img/chevron-amethyst-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/chevron-amethyst-640.webp 640w, assets/img/chevron-amethyst-1280.webp 1280w, assets/img/chevron-amethyst-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/chevron-amethyst-1280.jpg" alt="Tumbled chevron amethyst with purple and white bands" loading="lazy" decoding="async"></picture><span class="card__tag">Tumbled</span></div>
+      <li class="card card--wide" data-cat="tumbled" data-img="chevron-amethyst" data-form="Tumbled stone" data-origin="" data-note="Banded purple-and-white amethyst, tumbled smooth.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/chevron-amethyst-640.avif 640w, assets/img/chevron-amethyst-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/chevron-amethyst-640.webp 640w, assets/img/chevron-amethyst-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/chevron-amethyst-1280.jpg" alt="Tumbled chevron amethyst with purple and white bands" loading="lazy" decoding="async"></picture><span class="card__tag">Tumbled</span></div>
         <div class="card__body">
           <h3 class="card__name">Chevron Amethyst</h3>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Chevron Amethyst"></button>
       </li>
-      <li class="card" data-cat="tumbled" data-img="blue-apatite" data-form="Polished pebble" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="" data-note="Deep blue-green apatite pebbles with a glassy polish.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/blue-apatite-640.avif 640w, assets/img/blue-apatite-1280.avif 1280w, assets/img/blue-apatite-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/blue-apatite-640.webp 640w, assets/img/blue-apatite-1280.webp 1280w, assets/img/blue-apatite-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/blue-apatite-1280.jpg" alt="Polished blue apatite pebbles" loading="lazy" decoding="async"></picture><span class="card__tag">Pebbles</span></div>
+      <li class="card" data-cat="tumbled" data-img="blue-apatite" data-form="Polished pebble" data-origin="" data-note="Deep blue-green apatite pebbles with a glassy polish.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/blue-apatite-640.avif 640w, assets/img/blue-apatite-1280.avif 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/blue-apatite-640.webp 640w, assets/img/blue-apatite-1280.webp 1280w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/blue-apatite-1280.jpg" alt="Polished blue apatite pebbles" loading="lazy" decoding="async"></picture><span class="card__tag">Pebbles</span></div>
         <div class="card__body">
           <h3 class="card__name">Blue Apatite</h3>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Blue Apatite"></button>
       </li>
-      <li class="card" data-cat="raw" data-img="pyrite" data-form="Natural cluster" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="Peru" data-note="Glittering raw pyrite clusters, from single pieces to full cases.">
+      <li class="card" data-cat="raw" data-img="pyrite" data-form="Natural cluster" data-origin="Peru" data-note="Glittering raw pyrite clusters, from small pieces to showpieces.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/pyrite-640.avif 640w, assets/img/pyrite-1280.avif 1280w, assets/img/pyrite-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/pyrite-640.webp 640w, assets/img/pyrite-1280.webp 1280w, assets/img/pyrite-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/pyrite-1280.jpg" alt="A heap of glittering raw pyrite" loading="lazy" decoding="async"></picture><span class="card__tag">Raw</span></div>
         <div class="card__body">
           <h3 class="card__name">Pyrite</h3><span class="card__origin">Peru</span>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Pyrite"></button>
       </li>
-      <li class="card" data-cat="raw" data-img="raw-minerals" data-form="Rough specimen" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="Mexico" data-note="Calcite, fluorite and quartz specimens in open boxes.">
-        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/raw-minerals-640.avif 640w, assets/img/raw-minerals-1280.avif 1280w, assets/img/raw-minerals-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/raw-minerals-640.webp 640w, assets/img/raw-minerals-1280.webp 1280w, assets/img/raw-minerals-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/raw-minerals-1280.jpg" alt="Open boxes of raw calcite, fluorite and quartz" loading="lazy" decoding="async"></picture><span class="card__tag">Raw</span></div>
+      <li class="card" data-cat="raw" data-img="raw-minerals" data-form="Rough specimen" data-origin="Mexico" data-note="Calcite, fluorite and quartz specimens in open boxes.">
+        <div class="card__media"><picture><source type="image/avif" srcset="assets/img/raw-minerals-640.avif 640w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/raw-minerals-640.webp 640w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/raw-minerals-640.jpg" alt="Open boxes of raw calcite, fluorite and quartz" loading="lazy" decoding="async"></picture><span class="card__tag">Raw</span></div>
         <div class="card__body">
           <h3 class="card__name">Mexican Minerals</h3><span class="card__origin">Mexico</span>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Mexican Minerals"></button>
       </li>
-      <li class="card" data-cat="carvings" data-img="carvings" data-form="Hand carving" data-sold="Individually" data-tiers="Pick" data-origin="Peru" data-note="Hand-carved soapstone animal figures in natural stone colours.">
+      <li class="card" data-cat="carvings" data-img="carvings" data-form="Hand carving" data-origin="Peru" data-note="Hand-carved soapstone animal figures in natural stone colours.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/carvings-640.avif 640w, assets/img/carvings-1280.avif 1280w, assets/img/carvings-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/carvings-640.webp 640w, assets/img/carvings-1280.webp 1280w, assets/img/carvings-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/carvings-1280.jpg" alt="Hand-carved soapstone animal figures" loading="lazy" decoding="async"></picture><span class="card__tag">Carvings</span></div>
         <div class="card__body">
           <h3 class="card__name">Soapstone Animals</h3><span class="card__origin">Peru</span>
-          <p class="card__meta"><span>Individually</span><span>Pick</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Soapstone Animals"></button>
       </li>
-      <li class="card" data-cat="carvings" data-img="coprolite" data-form="Fossil" data-sold="By weight" data-tiers="Pick · Flat · Case" data-origin="" data-note="Fossilised coprolite in rust and charcoal tones, offered loose by weight.">
+      <li class="card" data-cat="carvings" data-img="coprolite" data-form="Fossil" data-origin="" data-note="Fossilised coprolite in rust and charcoal tones.">
         <div class="card__media"><picture><source type="image/avif" srcset="assets/img/coprolite-640.avif 640w, assets/img/coprolite-1280.avif 1280w, assets/img/coprolite-2000.avif 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><source type="image/webp" srcset="assets/img/coprolite-640.webp 640w, assets/img/coprolite-1280.webp 1280w, assets/img/coprolite-2000.webp 2000w" sizes="(max-width: 600px) 92vw, (max-width: 1100px) 46vw, 30vw"><img src="assets/img/coprolite-1280.jpg" alt="Rust-colored fossilized coprolite pieces" loading="lazy" decoding="async"></picture><span class="card__tag">Fossil</span></div>
         <div class="card__body">
           <h3 class="card__name">Coprolite</h3>
-          <p class="card__meta"><span>By weight</span><span>Pick · Flat · Case</span></p>
         </div>
         <button class="card__open" type="button" aria-haspopup="dialog" aria-label="View details: Coprolite"></button>
       </li>
@@ -331,79 +306,24 @@
     <p class="dialog__note" id="quick-note"></p>
     <dl class="facts">
       <div><dt>Form</dt><dd id="quick-form"></dd></div>
-      <div><dt>Offered</dt><dd id="quick-sold"></dd></div>
-      <div><dt>Tiers</dt><dd id="quick-tiers"></dd></div>
       <div id="quick-origin-row"><dt>Origin</dt><dd id="quick-origin"></dd></div>
     </dl>
-    <p class="dialog__hint">Trade rates follow what is on the floor and are shared personally on request.</p>
+    <p class="dialog__hint">Come see it in the shop. Every piece is different, and the tables change with each shipment.</p>
     <div class="dialog__actions">
-      <button class="btn btn--filled" type="button" id="quick-request">Request availability <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <a class="btn btn--filled" href="https://maps.app.goo.gl/iwhTjjQartF8ofcB8?g_st=ic" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
       <button class="btn btn--text" type="button" id="quick-close">Close</button>
     </div>
   </div>
   <button class="dialog__x" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.6"/></svg></button>
 </dialog>
 
-<!-- ============================== WHOLESALE ============================== -->
-<section class="wholesale theme-night" id="wholesale" aria-labelledby="wholesale-title">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow" data-reveal>For the trade</p>
-        <h2 class="h-display" id="wholesale-title" data-reveal>A tier for <em>every scale</em></h2>
-      </div>
-      <p class="lede" data-reveal>From a single specimen to a full case, the more of one stone you take, the better your rate.</p>
-    </div>
-    <div class="wholesale__grid">
-      <div class="gauge" data-reveal aria-label="Tier thresholds: Pick at any weight, Flat from 20 lb, Case from 44 lb" role="img">
-        <svg viewBox="0 0 400 230" aria-hidden="true">
-          <path class="gauge__track" d="M30 210 A170 170 0 0 1 370 210" pathLength="1"/>
-          <path class="gauge__fill" d="M30 210 A170 170 0 0 1 370 210" pathLength="1"/>
-          <g class="gauge__ticks"></g>
-          <g class="gauge__needle"><line x1="200" y1="210" x2="200" y2="62"/><circle cx="200" cy="210" r="9"/></g>
-        </svg>
-        <div class="gauge__read"><b class="gauge__lb">0</b><span>lb of one stone</span></div>
-        <div class="gauge__tier" aria-hidden="true"><span data-t="pick">Pick</span><span data-t="flat">Flat</span><span data-t="case">Case</span></div>
-      </div>
-      <ol class="tiers">
-        <li class="tier" data-tier="pick" data-reveal>
-          <p class="tier__step">Tier 01 · Any quantity</p>
-          <h3 class="tier__name">Pick</h3>
-          <p>Choose piece by piece. For collectors, gifts and first orders.</p>
-        </li>
-        <li class="tier" data-tier="flat" data-reveal>
-          <p class="tier__step">Tier 02 · 20 lb minimum</p>
-          <h3 class="tier__name">Flat</h3>
-          <p>Twenty pounds or more of one stone opens the trade rate most shops restock at.</p>
-        </li>
-        <li class="tier" data-tier="case" data-reveal>
-          <p class="tier__step">Tier 03 · 44 lb full case</p>
-          <h3 class="tier__name">Case</h3>
-          <p>A full case of a single stone at our best rate, for galleries, resellers and volume buyers.</p>
-        </li>
-      </ol>
-    </div>
-    <div class="pricelist" data-reveal>
-      <div>
-        <h3 class="h-headline">Trade rates, shared personally</h3>
-        <p>Our rates follow what is on the floor, so we share them one to one. Tell us what you have in mind and we'll send current availability and our trade sheet.</p>
-      </div>
-      <a class="btn btn--tonal" href="#inquiry">Request the trade sheet <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== WAREHOUSE ============================== -->
-<section class="warehouse theme-night" id="warehouse" aria-labelledby="warehouse-title">
+<!-- ============================== THE STORE ============================== -->
+<section class="warehouse theme-night" id="store" aria-labelledby="warehouse-title">
   <div class="wrap warehouse__head">
-    <p class="eyebrow" data-reveal>The warehouse</p>
+    <p class="eyebrow" data-reveal>The store</p>
     <h2 class="h-display" id="warehouse-title" data-reveal>A floor of <em>stone and light.</em></h2>
-    <p class="lede" data-reveal>Timber beams, long tables and stacked cases. Everything is out in the open and replenished as each shipment arrives.</p>
+    <p class="lede" data-reveal>Timber beams and long tables of stone. Everything is out in the open, ready to pick up, and new pieces arrive all the time.</p>
   </div>
-  <figure class="frame">
-    <div class="frame__clip"><picture><source type="image/avif" srcset="assets/img/hall-rafters-640.avif 640w, assets/img/hall-rafters-1280.avif 1280w, assets/img/hall-rafters-2000.avif 2000w" sizes="100vw"><source type="image/webp" srcset="assets/img/hall-rafters-640.webp 640w, assets/img/hall-rafters-1280.webp 1280w, assets/img/hall-rafters-2000.webp 2000w" sizes="100vw"><img src="assets/img/hall-rafters-1280.jpg" alt="Timber rafters and long tables of stone inside the Rock Park warehouse" loading="lazy" decoding="async"></picture></div>
-    <figcaption class="wrap"><span>01</span>Long tables of geodes and spheres run the length of the hall. Take your time; everything here is meant to be handled.</figcaption>
-  </figure>
   <div class="wrap macro">
     <p class="macro__label" data-reveal>Up close, from this week's arrivals</p>
     <ul class="macro__grid">
@@ -415,101 +335,6 @@
   </div>
 </section>
 
-<!-- ============================== PROCESS ============================== -->
-<section class="process theme-sand sheet" id="process" aria-labelledby="process-title">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow" data-reveal>How trade buying works</p>
-        <h2 class="h-display" id="process-title" data-reveal>Four steps, <em>nothing more</em></h2>
-      </div>
-      <p class="lede" data-reveal>No account to open and no minimum to browse. Every order is packed with care.</p>
-    </div>
-    <div class="steps">
-      <div class="steps__line" aria-hidden="true"><span></span></div>
-      <ol>
-        <li class="step" data-reveal>
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M8 34V14l12-8 12 8v20M15 34V22h10v12"/></svg>
-          <span class="step__n">01</span><h3 class="h-title">Call or visit</h3>
-          <p>Tell us what you're seeking, or simply come and walk the aisles.</p>
-        </li>
-        <li class="step" data-reveal>
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M20 4 32 13 27 36H13L8 13Z M8 13h24 M20 4l-4 9 4 23 4-23Z"/></svg>
-          <span class="step__n">02</span><h3 class="h-title">Choose by eye</h3>
-          <p>Select your pieces. The quantity of each stone sets its tier: Pick, Flat or Case.</p>
-        </li>
-        <li class="step" data-reveal>
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M6 30h28M10 30l4-14h12l4 14M20 16V8M14 8h12"/></svg>
-          <span class="step__n">03</span><h3 class="h-title">Weighed &amp; wrapped</h3>
-          <p>Every piece is weighed at the counter and wrapped for the journey.</p>
-        </li>
-        <li class="step" data-reveal>
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path pathLength="1" d="M3 12h21v16H3ZM24 18h7l6 6v4H24M9 32a3 3 0 1 0 0-.1M30 32a3 3 0 1 0 0-.1"/></svg>
-          <span class="step__n">04</span><h3 class="h-title">Collect or ship</h3>
-          <p>Take your selection with you, or let us arrange shipping for larger orders.</p>
-        </li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== INQUIRY ============================== -->
-<section class="inquiry theme-sand" id="inquiry" aria-labelledby="inquiry-title">
-  <div class="wrap inquiry__grid">
-    <div class="inquiry__aside">
-      <p class="eyebrow" data-reveal>Trade inquiry</p>
-      <h2 class="h-display" id="inquiry-title" data-reveal>Tell us what <em>you're seeking.</em></h2>
-      <p class="lede" data-reveal>Share the stones and quantities you have in mind. We'll reply personally with availability and our current trade sheet.</p>
-      <ul class="contact" data-reveal>
-        <li><span>Phone</span><a href="tel:" class="ph">[PHONE]</a></li>
-        <li><span>Email</span><span class="ph">[EMAIL]</span></li>
-        <li><span>Address</span><span>1270 <span class="ph">[STREET, CITY, STATE]</span></span></li>
-      </ul>
-    </div>
-    <form class="form" id="inquiry-form" novalidate data-reveal>
-      <div class="tf"><input id="f-name" name="name" autocomplete="name" placeholder=" " required aria-describedby="f-name-err"><label for="f-name">Name</label><span class="tf__err" id="f-name-err"></span></div>
-      <div class="tf"><input id="f-business" name="business" autocomplete="organization" placeholder=" "><label for="f-business">Business (optional)</label></div>
-      <div class="tf"><input id="f-email" type="email" name="email" autocomplete="email" placeholder=" " required aria-describedby="f-email-err"><label for="f-email">Email</label><span class="tf__err" id="f-email-err"></span></div>
-      <div class="tf tf--select"><select id="f-type" name="type">
-          <option>Retail / gift shop</option><option>Metaphysical shop</option><option>Jewelry or craft maker</option>
-          <option>Interior / decor</option><option>Online reseller</option><option>Other</option>
-        </select><label for="f-type">Business type</label></div>
-      <fieldset class="form__full form__stones">
-        <legend>Stones of interest</legend>
-        <div class="chips chips--wrap">
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Amethyst"><span>Amethyst</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Celestite"><span>Celestite</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Septarian"><span>Septarian</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Labradorite"><span>Labradorite</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Pyrite"><span>Pyrite</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Selenite"><span>Selenite</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Amazonite"><span>Amazonite</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Flower agate"><span>Flower agate</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Rose quartz"><span>Rose quartz</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Tumbled stones"><span>Tumbled stones</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Towers &amp; points"><span>Towers &amp; points</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Spheres"><span>Spheres</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Carvings"><span>Carvings</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Mexican minerals"><span>Mexican minerals</span></label>
-          <label class="chip chip--check"><input type="checkbox" name="stones" value="Coprolite &amp; fossils"><span>Coprolite &amp; fossils</span></label>
-        </div>
-      </fieldset>
-      <div class="tf tf--select"><select id="f-volume" name="volume">
-          <option>Under 20 lb</option><option>20 – 44 lb (Flat)</option><option>44 – 200 lb (Case)</option><option>200 lb +</option>
-        </select><label for="f-volume">Estimated volume</label></div>
-      <div class="tf tf--select"><select id="f-delivery" name="delivery">
-          <option>Pickup at warehouse</option><option>Ask about shipping</option>
-        </select><label for="f-delivery">Pickup or shipping</label></div>
-      <div class="tf form__full"><textarea id="f-message" name="message" placeholder=" " rows="4"></textarea><label for="f-message">Message — sizes, quantities, timing</label></div>
-      <div class="form__foot form__full">
-        <button class="btn btn--filled btn--lg" type="submit">Send inquiry <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <small>Opens your email app with everything filled in.</small>
-      </div>
-      <p class="form__status form__full" id="form-status" role="status"></p>
-    </form>
-  </div>
-</section>
-
 <!-- ============================== VISIT ============================== -->
 <section class="visit theme-night" id="visit" aria-labelledby="visit-title">
   <div class="visit__media"><div class="visit__clip"><picture><source type="image/avif" srcset="assets/img/storefront-angle-640.avif 640w, assets/img/storefront-angle-1280.avif 1280w, assets/img/storefront-angle-2000.avif 2000w" sizes="(max-width: 900px) 100vw, 55vw"><source type="image/webp" srcset="assets/img/storefront-angle-640.webp 640w, assets/img/storefront-angle-1280.webp 1280w, assets/img/storefront-angle-2000.webp 2000w" sizes="(max-width: 900px) 100vw, 55vw"><img src="assets/img/storefront-angle-1280.jpg" alt="Rock Park storefront with timber beams and red-and-yellow Rock Park banners under a blue desert sky" loading="lazy" decoding="async"></picture></div></div>
@@ -517,11 +342,12 @@
     <p class="eyebrow" data-reveal>Visit</p>
     <h2 class="h-display" id="visit-title" data-reveal>Find us beneath <em>the red banners.</em></h2>
     <dl class="facts" data-reveal>
-      <div><dt>Address</dt><dd>1270 <span class="ph">[Street]</span><br><span class="ph">[City, State ZIP]</span></dd></div>
+      <div><dt>Address</dt><dd>1270 W Main St<br>Quartzsite, AZ 85346</dd></div>
       <div><dt>Hours</dt><dd><span class="ph">[Mon–Sat 9–5]</span></dd></div>
       <div><dt>Phone</dt><dd><span class="ph">[PHONE]</span></dd></div>
     </dl>
-    <div data-reveal><a class="btn btn--filled" href="https://maps.google.com/?q=Rock+Park" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+    <div data-reveal><a class="btn btn--filled" href="https://maps.app.goo.gl/iwhTjjQartF8ofcB8?g_st=ic" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+    <p class="insta" data-reveal><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>Instagram · coming soon</p>
   </div>
 </section>
 
@@ -532,13 +358,11 @@
   <div class="wrap">
     <p class="footer__big" aria-hidden="true" data-chars>Rock Park</p>
     <div class="footer__row">
-      <span>© <span id="year">2026</span> Rock Park · Minerals &amp; crystals, chosen by hand</span>
+      <span>© <span id="year">2026</span> Rock Park · Crystal &amp; mineral shop, Quartzsite, Arizona</span>
       <ul>
         <li><a href="#collection">Collection</a></li>
-        <li><a href="#wholesale">Wholesale</a></li>
+        <li><a href="#store">The store</a></li>
         <li><a href="#visit">Visit</a></li>
-        <li><a href="#" class="ph">[Instagram]</a></li>
-        <li><a href="#" class="ph">[Facebook]</a></li>
       </ul>
     </div>
   </div>
@@ -553,6 +377,5 @@
 <script src="vendor/gsap/CustomEase.min.js" defer></script>
 <script src="js/main.js" defer></script>
 <script src="js/motion.js" defer></script>
-<script type="module" src="js/crystal.js"></script>
 </body>
 </html>

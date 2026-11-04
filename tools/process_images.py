@@ -28,29 +28,32 @@ MIN_SRC_W = 1600  # never upscale: a crop must carry this many source pixels
 # name: (source number, crop box)
 CROPS = {
     # atmosphere
-    "hall-rafters":     (1,  (0.30, 0.42, 0.92, 1.00)),
+    "hero-hall":        (1,  (0.00, 0.06, 1.00, 0.94)),
     "hall-stock":       (5,  (0.40, 0.06, 1.00, 0.76)),
     "hall-aisle":       (2,  (0.00, 0.00, 1.00, 0.50)),
     "storefront":       (27, (0.07, 0.08, 0.73, 0.72)),
     "storefront-angle": (25, (0.00, 0.00, 0.62, 1.00)),
-    # collection
-    "amethyst-cathedrals": (6,  (0.00, 0.42, 1.00, 1.00)),
-    "celestite":        (26, (0.60, 0.36, 1.00, 1.00)),
-    "septarian":        (19, (0.60, 0.30, 1.00, 1.00)),
-    "labradorite":      (15, (0.00, 0.44, 0.90, 1.00)),
-    "amazonite":        (18, (0.62, 0.00, 1.00, 0.42)),
-    "flower-agate":     (21, (0.00, 0.46, 1.00, 1.00)),
-    "pyrite":           (12, (0.00, 0.40, 1.00, 0.86)),
-    "rose-quartz":      (11, (0.10, 0.50, 0.62, 1.00)),
-    "chevron-amethyst": (14, (0.00, 0.48, 0.70, 1.00)),
-    "quartz-points":    (22, (0.00, 0.25, 1.00, 1.00)),
-    "towers":           (9,  (0.00, 0.50, 0.60, 1.00)),
-    "spheres":          (24, (0.10, 0.30, 1.00, 1.00)),
-    "blue-apatite":     (10, (0.22, 0.52, 0.70, 1.00)),
-    "raw-minerals":     (17, (0.00, 0.55, 1.00, 1.00)),
-    "carvings":         (8,  (0.00, 0.40, 1.00, 1.00)),
-    "coprolite":        (23, (0.03, 0.32, 0.97, 1.00)),
+    # collection — tight on the stones: no table, box walls or signs
+    "amethyst-cathedrals": (6, (0.49, 0.53, 0.805, 0.92)),
+    "celestite":        (26, (0.70, 0.71, 0.95, 0.98)),
+    "septarian":        (19, (0.00, 0.27, 0.34, 0.56)),
+    "labradorite":      (15, (0.14, 0.48, 0.84, 0.97)),
+    "amazonite":        (18, (0.655, 0.09, 0.97, 0.40)),
+    "flower-agate":     (21, (0.10, 0.52, 0.90, 0.90)),
+    "pyrite":           (12, (0.05, 0.43, 0.95, 0.82)),
+    "rose-quartz":      (11, (0.30, 0.76, 0.66, 1.00)),
+    "chevron-amethyst": (14, (0.00, 0.58, 0.36, 0.94)),
+    "quartz-points":    (22, (0.06, 0.30, 0.90, 0.92)),
+    "towers":           (9, (0.00, 0.52, 0.44, 0.96)),
+    "spheres":          (24, (0.14, 0.40, 0.80, 0.92)),
+    "blue-apatite":     (10, (0.25, 0.60, 0.62, 0.98)),
+    "raw-minerals":     (17, (0.42, 0.85, 0.70, 1.00)),
+    "carvings":         (8, (0.02, 0.48, 0.98, 0.98)),
+    "coprolite":        (23, (0.08, 0.36, 0.92, 0.98)),
 }
+
+# Crops that only find clean stone in a small patch; cards show them at most ~430px wide
+SMALL_CROPS = {"raw-minerals": 1000, "celestite": 1200}
 
 # Macro details for the warehouse band (honest close-ups of the stock, no fluorescent rooms)
 MACROS = {
@@ -60,7 +63,7 @@ MACROS = {
     "macro-celestite":   (26, (0.70, 0.74, 0.96, 1.00)),
 }
 # Room shots get a darker, warmer "cinematic" grade so fluorescent light and clutter recede
-CINEMATIC = {"hall-rafters", "storefront", "storefront-angle"}
+CINEMATIC = {"storefront", "storefront-angle"}
 GAIN = {"macro-amethyst": 1.45}  # very dark crops get a gentle exposure lift
 
 # Tight 4:5 spotlight crops of single specimens for the theatre; CSS fades their edges into the dark stage.
@@ -82,6 +85,7 @@ STICKER_HSV = {
     "pink":   [((150, 90, 170), (172, 255, 255))],
 }
 RETOUCH = {
+    "hero-hall": ("yellow",),
     "macro-amethyst": ("yellow", "green", "pink", "orange"),
     "amethyst-cathedrals": ("yellow", "green", "pink", "orange"),
     "spot-amethyst": ("yellow", "green", "pink", "orange"),
@@ -94,7 +98,8 @@ RETOUCH = {
 }
 # Leftovers the colour mask misses (white tags etc): (x, y, radius) as fractions of the CROP.
 SPOTS = {
-    "spheres": [(0.37, 0.49, 0.025)],
+    "spheres": [(0.444, 0.467, 0.034)],
+    "amethyst-cathedrals": [(0.333, 0.31, 0.025), (0.76, 0.35, 0.025)],
     "spot-sphere": [(0.31, 0.48, 0.075)],
     "spot-heart": [(0.052, 0.844, 0.095)],
 }
@@ -191,7 +196,7 @@ if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     for name, (num, box) in CROPS.items():
         if not only or name in only:
-            process(name, num, box)
+            process(name, num, box, min_w=SMALL_CROPS.get(name, MIN_SRC_W))
     for name, (num, box) in {**SPOTLIGHTS, **MACROS}.items():
         if not only or name in only:
             process(name, num, box, min_w=1060)  # displayed at most ~640px wide

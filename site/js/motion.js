@@ -19,7 +19,8 @@
   gsap.defaults({ ease: "md-emph-dec", duration: 1 });
 
   const mm = gsap.matchMedia();
-  const DESKTOP = "(min-width: 901px)";
+  // the pinned theatre needs room for head + 64vh plate; short laptop screens get the plain stack
+  const DESKTOP = "(min-width: 901px) and (min-height: 720px)";
 
   /* ------------------------------------------------------------------
      Hero: line mask rise, then the supporting copy
@@ -38,14 +39,11 @@
   });
   gsap.to("[data-hero]", { opacity: 1, y: 0, duration: 1.1, stagger: 0.09, delay: 0.55 });
   document.fonts.ready.then(() => {
-    const words = SplitText.create(".manifesto__text", { type: "words", wordsClass: "w", aria: "none" });
-    gsap.to(words.words, { opacity: 1, stagger: 0.1, ease: "none",
-      scrollTrigger: { trigger: ".manifesto__text", start: "top 78%", end: "bottom 45%", scrub: 0.8 } });
     const chars = SplitText.create(".footer__big", { type: "chars", charsClass: "ch", aria: "none" });
     gsap.from(chars.chars, { yPercent: 100, opacity: 0, rotate: 6, stagger: 0.04, duration: 1.3, scrollTrigger: { trigger: ".footer", start: "top 80%" } });
     ScrollTrigger.refresh();
   });
-  // Copy lifts away as the crystal takes the scroll
+  // Copy lifts away as the page scrolls
   gsap.to(".hero__content", { yPercent: -18, opacity: 0, ease: "none",
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 } });
 
@@ -58,9 +56,6 @@
     ScrollTrigger.batch("[data-reveal]", { start: "top 90%", once: true, onEnter: reveal, onEnterBack: reveal });
 
     /* ------------------------------------------------------------------
-       Manifesto: words light up as you read
-       ------------------------------------------------------------------ */
-    /* ------------------------------------------------------------------
        Specimen theatre — the one long pin, desktop only
        ------------------------------------------------------------------ */
     mm.add(DESKTOP, () => {
@@ -68,36 +63,60 @@
       const specs = $$(".spec", sec);
       const dots = $$(".theatre__dots i", sec);
       sec.classList.add("is-staged");
+      // six plates -> six faces of a hexagonal prism that turns 60deg per stone
+      const stage = document.createElement("div");
+      stage.className = "prism-stage";
+      stage.setAttribute("aria-hidden", "true");
+      const prism = document.createElement("div");
+      prism.className = "prism";
+      specs.forEach((spec, i) => {
+        const face = document.createElement("figure");
+        face.className = "prism__face";
+        face.style.setProperty("--i", i);
+        const pic = $(".spec__plate picture", spec).cloneNode(true);
+        $("img", pic).loading = "eager";
+        $("img", pic).alt = "";
+        face.append(pic);
+        prism.append(face);
+      });
+      stage.append(prism);
+      $(".theatre__body", sec).append(stage);
+      const glow = (i) => stage.style.setProperty("--glow", specs[i].style.getPropertyValue("--glow"));
+      // pull the prism back by its apothem so the front face sits at z=0
+      gsap.set(prism, { z: () => -prism.offsetWidth * 0.866, rotationY: 0 });
       gsap.set(specs.slice(1), { autoAlpha: 0 });
-      gsap.set(specs.slice(1).map((s) => $(".spec__plate", s)), { clipPath: "inset(100% 0% 0% 0%)" });
       dots[0].classList.add("is-on");
+      glow(0);
 
       const tl = gsap.timeline({ defaults: { ease: "md-emph" } });
       specs.slice(1).forEach((spec, i) => {
         const prev = specs[i];
         const at = i * 1.2;
-        tl.to($(".spec__plate", prev), { clipPath: "inset(0% 0% 100% 0%)", scale: 0.94, duration: 1 }, at)
+        tl.to(prism, { rotationY: -60 * (i + 1), duration: 1 }, at)
           .to($(".spec__text", prev), { y: -50, opacity: 0, duration: 0.4, ease: "md-emph-acc" }, at)
           .set(prev, { autoAlpha: 0 }, at + 1)
           .set(spec, { autoAlpha: 1 }, at)
-          .fromTo($(".spec__plate", spec), { clipPath: "inset(100% 0% 0% 0%)", scale: 1.08 }, { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 1 }, at)
-          .from($(".spec__plate img", spec), { scale: 1.25, duration: 1.2 }, at)
           .from($$(".spec__text > *", spec), { y: 50, opacity: 0, stagger: 0.07, duration: 0.6 }, at + 0.45);
       });
       tl.to({}, { duration: 0.6 }); // hold the last stone before releasing the pin
 
-      ScrollTrigger.create({
-        trigger: sec, start: "top top", end: () => "+=" + innerHeight * 4.2, pin: ".theatre__pin", scrub: 0.8, animation: tl,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const idx = Math.min(specs.length - 1, Math.round(self.progress * (tl.duration() - 0.6) / 1.2));
-          dots.forEach((d, i) => d.classList.toggle("is-on", i === idx));
-        },
+      // dots and glow follow the (scrub-smoothed) timeline, so they stay in step with the copy
+      let current = 0;
+      tl.eventCallback("onUpdate", () => {
+        const idx = Math.min(specs.length - 1, Math.round(tl.time() / 1.2));
+        if (idx === current) return;
+        current = idx;
+        dots.forEach((d, i) => d.classList.toggle("is-on", i === idx));
+        glow(idx);
       });
-      return () => { sec.classList.remove("is-staged"); gsap.set([...specs, ...$$(".spec *", sec)], { clearProps: "all" }); };
+      ScrollTrigger.create({
+        trigger: sec, start: "top top", end: () => "+=" + innerHeight * 5, pin: ".theatre__pin", scrub: 0.8, animation: tl,
+        invalidateOnRefresh: true,
+      });
+      return () => { sec.classList.remove("is-staged"); stage.remove(); gsap.set([...specs, ...$$(".spec *", sec)], { clearProps: "all" }); };
     });
     // Mobile: plates rise and sharpen as they enter
-    mm.add("(max-width: 900px)", () => {
+    mm.add("(max-width: 900px), (max-height: 719px)", () => {
       $$(".spec__plate").forEach((p) => gsap.from(p, { scale: 0.86, opacity: 0, duration: 1.2,
         scrollTrigger: { trigger: p, start: "top 85%" } }));
     });
@@ -115,37 +134,12 @@
       onEnter: (els) => gsap.from(els, { y: 60, opacity: 0, scale: 0.97, duration: 1, stagger: 0.08, clearProps: "transform,opacity" }) });
 
     /* ------------------------------------------------------------------
-       Wholesale gauge: scroll weighs out 0 → 52 lb
+       The store: macro close-ups drift at their own speeds
        ------------------------------------------------------------------ */
-    const g = { lb: 0 };
-    window.RP.setGauge(0);
-    gsap.to(g, { lb: 52, ease: "none", onUpdate: () => window.RP.setGauge(g.lb),
-      scrollTrigger: { trigger: ".wholesale__grid", start: "top 75%", end: "bottom 45%", scrub: 0.8 } });
-
-    /* ------------------------------------------------------------------
-       Warehouse: frames open from an inset, photos settle
-       ------------------------------------------------------------------ */
-    $$(".frame").forEach((f) => {
-      const clip = $(".frame__clip", f), img = $("img", f);
-      const st = { trigger: f, start: "top bottom", end: "center 55%", scrub: 0.8 };
-      gsap.fromTo(clip, { clipPath: "inset(10% 12% 10% 12% round 28px)" }, { clipPath: "inset(0% 0% 0% 0% round 28px)", ease: "none", scrollTrigger: st });
-      gsap.fromTo(img, { scale: 1.3, yPercent: -6 }, { scale: 1, yPercent: 6, ease: "none",
-        scrollTrigger: { trigger: f, start: "top bottom", end: "bottom top", scrub: true } });
-      gsap.from($("figcaption", f), { y: 30, opacity: 0, duration: 1, scrollTrigger: { trigger: f, start: "center 70%" } });
-    });
-
-    // Macro close-ups drift at their own speeds
     $$(".macro__item").forEach((m) => gsap.fromTo(m, { yPercent: -(+m.dataset.speed) }, { yPercent: +m.dataset.speed, ease: "none",
       scrollTrigger: { trigger: ".macro", start: "top bottom", end: "bottom top", scrub: true } }));
     ScrollTrigger.batch(".macro__item picture", { start: "top 92%", once: true,
       onEnter: (els) => gsap.from(els, { clipPath: "inset(100% 0% 0% 0% round 16px)", duration: 1.4, stagger: 0.12, ease: "md-emph" }) });
-
-    /* ------------------------------------------------------------------
-       Process: the line draws, icons ink in
-       ------------------------------------------------------------------ */
-    gsap.to(".steps__line span", { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".steps", start: "top 75%", end: "bottom 60%", scrub: 0.8 } });
-    ScrollTrigger.batch(".step", { start: "top 85%", once: true,
-      onEnter: (els) => gsap.to(els.map((e) => $("svg path", e)), { strokeDashoffset: 0, duration: 1.6, stagger: 0.15, ease: "md-emph" }) });
 
     /* ------------------------------------------------------------------
        Visit photo opens; footer wordmark rises letter by letter
