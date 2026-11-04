@@ -128,6 +128,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .agate .q1 { fill: color-mix(in srgb, var(--md-sys-color-primary) 22%, var(--md-sys-color-surface-container-lowest)); }
 .agate .q2 { fill: color-mix(in srgb, var(--md-sys-color-primary) 40%, var(--md-sys-color-surface)); }
 .agate .druzy { fill: color-mix(in srgb, var(--md-sys-color-primary) 75%, var(--md-sys-color-on-surface)); }
+/* fine grain over the whole hero, like printed paper or honed stone */
+.hero__art::before { content: ""; position: absolute; inset: 0; z-index: 1; opacity: .16; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+[data-theme="dark"] .hero__art::before { mix-blend-mode: screen; opacity: .1; }
+.agate { will-change: transform; } /* rasterise once; scroll and idle motion then only move the layer */
+/* idle life: the slices turn and drift on their own, using the individual rotate/translate
+   properties so they compose with the scroll-driven transform set by GSAP (no scale: it would blur the layer) */
+.motion .agate--a { animation: agate-a 26s ease-in-out infinite alternate; }
+.motion .agate--b { animation: agate-b 32s ease-in-out infinite alternate; }
+@keyframes agate-a { from { rotate: -4deg; translate: 0 0; } to { rotate: 6deg; translate: -14px -10px; } }
+@keyframes agate-b { from { rotate: 5deg; translate: 0 0; } to { rotate: -5deg; translate: 12px 14px; } }
 .motion .hero__art { animation: art-in 2.2s var(--md-sys-motion-easing-emphasized-decelerate) both; }
 @keyframes art-in { from { opacity: 0; transform: scale(1.06); } }
 .hero__content { position: relative; z-index: 2; max-width: 980px; text-align: center; }

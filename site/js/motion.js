@@ -46,6 +46,10 @@
   // Copy lifts away as the page scrolls
   gsap.to(".hero__content", { yPercent: -18, opacity: 0, ease: "none",
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 } });
+  // The drawn stones turn slowly against each other as the hero scrolls away
+  const heroScrub = { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 };
+  gsap.to(".agate--a", { rotation: 14, yPercent: -10, ease: "none", scrollTrigger: heroScrub });
+  gsap.to(".agate--b", { rotation: -12, yPercent: 12, ease: "none", scrollTrigger: heroScrub });
 
   // Everything below the hero is wired in idle time, keeping the first paint and input responsive
   const belowFold = () => { try {
