@@ -77,6 +77,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .bar.is-solid { background: color-mix(in srgb, var(--md-sys-color-surface-container) 82%, transparent); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3);
   box-shadow: 0 1px 0 color-mix(in srgb, var(--md-sys-color-outline-variant) 60%, transparent); }
 .bar.is-hidden { transform: translateY(-100%); }
+.bar:not(.is-solid):not(.is-open) { color: #fff; --md-sys-color-on-surface: #fff; --md-sys-color-on-surface-variant: rgb(255 255 255 / .85); }
+.bar:not(.is-solid):not(.is-open) .brand svg { color: #f2d48a; }
 .bar__inner { display: flex; align-items: center; gap: 24px; height: 72px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
 .brand svg { width: 24px; height: 28px; color: var(--md-sys-color-primary); }
@@ -88,14 +90,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .bar__nav a:hover, .bar__nav a[aria-current="true"] { color: var(--md-sys-color-on-surface); }
 .bar__ind { position: absolute; left: 0; bottom: 4px; height: 3px; width: 0; border-radius: 3px 3px 0 0; background: var(--md-sys-color-primary); opacity: 0; pointer-events: none;
   transition: transform var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-emphasized), width var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-emphasized), opacity var(--md-sys-motion-duration-short4) linear; }
-.bar__theme { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 80%, transparent);
-  border-radius: 50%; background: none; color: var(--md-sys-color-on-surface); cursor: pointer; transition: background-color var(--md-sys-motion-duration-short4); }
-.bar__theme:hover { background: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent); }
-.bar__theme svg { grid-area: 1 / 1; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round;
-  transition: opacity var(--md-sys-motion-duration-medium2), transform var(--md-sys-motion-duration-medium4) var(--md-sys-motion-easing-emphasized); }
-.bar__moon { opacity: 0; transform: rotate(-60deg) scale(.6); }
-[data-theme="dark"] .bar__sun { opacity: 0; transform: rotate(60deg) scale(.6); }
-[data-theme="dark"] .bar__moon { opacity: 1; transform: none; }
 .bar__toggle { display: none; width: 48px; height: 48px; border: 0; border-radius: 50%; background: none; cursor: pointer; position: relative; }
 .bar__toggle span { position: absolute; left: 14px; right: 14px; height: 1.5px; background: currentColor; transition: transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized); }
 .bar__toggle span:first-child { top: 20px; } .bar__toggle span:last-child { top: 27px; }
@@ -106,54 +100,38 @@ button, input, select, textarea { font: inherit; color: inherit; }
    Hero
    ========================================================================== */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding: 140px 0 112px; isolation: isolate;
-  background:
-    radial-gradient(ellipse 60% 70% at 8% 18%, color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent), transparent 70%),
-    radial-gradient(ellipse 55% 60% at 40% 100%, color-mix(in srgb, var(--md-sys-color-tertiary) 10%, transparent), transparent 70%),
-    var(--md-sys-color-surface-container-low); }
-/* drawn background: two agate geode slices bleed off opposite corners, the centre stays clear for the copy */
-.hero__art { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.hero__art { overflow: hidden; }
-.agate { position: absolute; display: block; }
-.agate--a { --s: clamp(440px, 50vw, 920px); width: var(--s); height: var(--s); right: calc(var(--s) * -.44); bottom: calc(var(--s) * -.44); }
-.agate--b { --s: clamp(360px, 36vw, 680px); width: var(--s); height: var(--s); left: calc(var(--s) * -.46); top: 104px; }
-.hero__art::after { content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 46% 52% at 50% 50%, color-mix(in srgb, var(--md-sys-color-surface-container-low) 88%, transparent), transparent 100%); }
-.agate .b0 { fill: color-mix(in srgb, var(--md-sys-color-tertiary) 30%, color-mix(in srgb, var(--md-sys-color-primary) 55%, var(--md-sys-color-on-surface))); }
-.agate .b1 { fill: color-mix(in srgb, var(--md-sys-color-primary) 34%, var(--md-sys-color-surface)); }
-.agate .b2 { fill: color-mix(in srgb, var(--md-sys-color-primary) 16%, var(--md-sys-color-surface)); }
-.agate .b3 { fill: color-mix(in srgb, var(--md-sys-color-tertiary) 22%, var(--md-sys-color-surface)); }
-.agate .b4 { fill: color-mix(in srgb, var(--md-sys-color-primary) 52%, var(--md-sys-color-surface)); }
-.agate .b5 { fill: var(--md-sys-color-surface-container-lowest); }
-.agate .cav { fill: color-mix(in srgb, var(--md-sys-color-primary) 62%, var(--md-sys-color-surface)); }
-.agate .q1 { fill: color-mix(in srgb, var(--md-sys-color-primary) 22%, var(--md-sys-color-surface-container-lowest)); }
-.agate .q2 { fill: color-mix(in srgb, var(--md-sys-color-primary) 40%, var(--md-sys-color-surface)); }
-.agate .druzy { fill: color-mix(in srgb, var(--md-sys-color-primary) 75%, var(--md-sys-color-on-surface)); }
-/* fine grain over the whole hero, like printed paper or honed stone */
-.hero__art::before { content: ""; position: absolute; inset: 0; z-index: 1; opacity: .16; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-[data-theme="dark"] .hero__art::before { mix-blend-mode: screen; opacity: .1; }
-.agate { will-change: transform; } /* rasterise once; scroll and idle motion then only move the layer */
-/* idle life: the slices turn and drift on their own, using the individual rotate/translate
-   properties so they compose with the scroll-driven transform set by GSAP (no scale: it would blur the layer) */
-.motion .agate--a { animation: agate-a 26s ease-in-out infinite alternate; }
-.motion .agate--b { animation: agate-b 32s ease-in-out infinite alternate; }
-@keyframes agate-a { from { rotate: -4deg; translate: 0 0; } to { rotate: 6deg; translate: -14px -10px; } }
-@keyframes agate-b { from { rotate: 5deg; translate: 0 0; } to { rotate: -5deg; translate: 12px 14px; } }
-.motion .hero__art { animation: art-in 2.2s var(--md-sys-motion-easing-emphasized-decelerate) both; }
-@keyframes art-in { from { opacity: 0; transform: scale(1.06); } }
+  background: #1c1714; color: #fff;
+  /* light text over the shop photos; the page around it stays in the light theme */
+  --md-sys-color-on-surface: #fff; --md-sys-color-on-surface-variant: rgb(255 255 255 / .88);
+  --md-sys-color-outline: rgb(255 255 255 / .7); --md-sys-color-outline-variant: rgb(255 255 255 / .32); --rp-accent: #f2d48a; }
+/* photographed background: a warm shop interior, drifting in slowly */
+.hero__media { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hero__slide, .hero__slide img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__slide img { object-fit: cover; }
+.hero__slide--interior img { object-position: 50% 60%; }
+/* scrim: darkest behind the centred copy, so the text clears WCAG AA on every frame */
+.hero__media::after { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 58% 52% at 50% 54%, rgb(18 12 10 / .68), rgb(18 12 10 / .26) 100%),
+              linear-gradient(180deg, rgb(18 12 10 / .5), transparent 22%, transparent 76%, rgb(18 12 10 / .5)); }
+.motion .hero__slide { animation: hero-drift 24s ease-out both; }
+@keyframes hero-drift { from { scale: 1.08; } }
+.motion .hero__media { animation: art-in 1.6s var(--md-sys-motion-easing-emphasized-decelerate) both; }
+@keyframes art-in { from { opacity: 0; } }
+.hero .btn--filled { --bg: var(--md-sys-color-primary); }
+.hero .btn--outlined { background: rgb(255 255 255 / .08); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .hero__content { position: relative; z-index: 2; max-width: 980px; text-align: center; }
 .hero__content .eyebrow { justify-content: center; }
-.hero__title { max-width: none; margin: 0 0 28px; font: var(--md-sys-typescale-display-large); font-size: clamp(44px, 6.4vw, 104px); font-variation-settings: "opsz" 144, "SOFT" 50; letter-spacing: -.035em; }
+.hero__title { max-width: none; margin: 0 0 28px; text-shadow: 0 2px 24px rgb(0 0 0 / .35); font: var(--md-sys-typescale-display-large); font-size: clamp(44px, 6.4vw, 104px); font-variation-settings: "opsz" 144, "SOFT" 50; letter-spacing: -.035em; }
 .hero__title em { display: inline; }
-.hero__lede { max-width: 46ch; margin: 0 auto 40px; font: var(--md-sys-typescale-title-large); color: var(--md-sys-color-on-surface-variant); }
+.hero__lede { max-width: 46ch; margin: 0 auto 40px; font: var(--md-sys-typescale-title-large); color: var(--md-sys-color-on-surface-variant); text-shadow: 0 1px 12px rgb(0 0 0 / .5); }
 .hero__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 /* the showroom, in one quiet line under the calls to action */
 .hero__visit { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 12px; margin: 44px auto 0; padding-top: 22px; max-width: 560px;
   border-top: 1px solid var(--md-sys-color-outline-variant); font: var(--md-sys-typescale-body-medium); color: var(--md-sys-color-on-surface-variant); }
-.hero__visit i { width: 7px; height: 7px; transform: rotate(45deg); background: var(--md-sys-color-primary); }
+.hero__visit i { width: 7px; height: 7px; transform: rotate(45deg); background: var(--rp-accent); }
 .hero__visit-sep { color: var(--md-sys-color-outline); }
-.hero__visit-link { display: inline-flex; align-items: center; gap: 6px; font: var(--md-sys-typescale-label-large); color: var(--md-sys-color-primary); text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--md-sys-color-primary) 45%, transparent); }
+.hero__visit-link { display: inline-flex; align-items: center; gap: 6px; font: var(--md-sys-typescale-label-large); color: var(--rp-accent); text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--rp-accent) 45%, transparent); }
 .hero__visit-link svg { width: 14px; height: 14px; transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard); }
 .hero__visit-link:hover svg { transform: translateX(3px); }
 .hero__cue { position: absolute; left: 50%; bottom: 28px; translate: -50% 0; width: 28px; height: 44px; border: 1.5px solid var(--md-sys-color-outline); border-radius: 14px; z-index: 2; }
@@ -194,13 +172,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .spec__facts { display: flex; gap: 40px; margin: 0; }
 .spec__facts dt, .facts dt { font: var(--md-sys-typescale-label-medium); letter-spacing: var(--md-sys-typescale-label-tracking); text-transform: uppercase; color: var(--md-sys-color-on-surface-variant); }
 .spec__facts dd, .facts dd { margin: 6px 0 0; font: var(--md-sys-typescale-title-medium); }
+.facts dd a { color: inherit; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 4px; }
 .theatre__dots { display: none; }
 
 .theatre.is-staged { padding: 0; }
-.theatre.is-staged .theatre__pin { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 72px; }
+.theatre.is-staged .theatre__pin { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 72px 0 56px; } /* bottom room: skip button */
 .theatre.is-staged .theatre__head { margin-bottom: 8px; text-align: center; }
-.theatre.is-staged .theatre__body { position: relative; --fw: min(26vw, 440px, 47vh); }
-.theatre.is-staged .theatre__list { display: block; position: relative; height: min(70vh, 720px); }
+.theatre.is-staged .theatre__body { position: relative; --fw: min(26vw, 440px, 44vh); }
+.theatre.is-staged .theatre__list { display: block; position: relative; height: min(64vh, 660px); }
+@media (max-height: 820px) { /* short laptops: a little less prism so the skip button stays on screen */
+  .theatre.is-staged .theatre__body { --fw: min(26vw, 440px, 41vh); }
+  .theatre.is-staged .theatre__list { height: 59vh; }
+}
 .theatre.is-staged .spec { position: absolute; inset: 0; }
 /* staged: the plates become the six faces of a turning hexagonal prism (built in motion.js) */
 .theatre.is-staged .spec__plate { display: none; }
@@ -231,6 +214,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .theatre.is-staged .theatre__dots { display: flex; gap: 12px; position: absolute; z-index: 2; left: 50%; bottom: 6px; translate: -50% 0; }
 .theatre__dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--md-sys-color-outline-variant); transition: background var(--md-sys-motion-duration-medium2), transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized); }
 .theatre__dots i.is-on { background: var(--md-sys-color-primary); transform: scale(1.6); }
+/* for visitors in a hurry: leave the long pinned prism in one click (only shown while it is staged) */
+.theatre__skip { display: none; }
+.theatre.is-staged .theatre__skip { display: inline-flex; align-items: center; gap: 8px; position: absolute; z-index: 3; left: 50%; bottom: -50px; translate: -50% 0;
+  padding: 10px 18px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-full);
+  font: var(--md-sys-typescale-label-large); color: var(--md-sys-color-on-surface-variant); text-decoration: none;
+  background: color-mix(in srgb, var(--md-sys-color-surface) 80%, transparent);
+  transition: color var(--md-sys-motion-duration-short4), border-color var(--md-sys-motion-duration-short4); }
+.theatre__skip:hover { color: var(--md-sys-color-on-surface); border-color: var(--md-sys-color-outline); }
+.theatre__skip svg { width: 14px; height: 14px; transition: transform var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard); }
+.theatre__skip:hover svg { transform: translateY(3px); }
 
 /* ==========================================================================
    Sheets — sand sections slide over the night like M3 sheets
@@ -366,7 +359,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee__track, .hero__cue span { animation: none; }
+  .marquee__track, .hero__cue span, .hero__slide { animation: none; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
 
@@ -394,9 +387,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .head, .warehouse__head, .visit { grid-template-columns: 1fr; }
   .warehouse__head { row-gap: 24px; }
   .hero { padding: 120px 0 104px; }
-  .agate--a { --s: 104vw; right: -64vw; bottom: -42vw; }
-  .agate--b { --s: 80vw; left: -58vw; top: 76px; }
-  .agate { opacity: .5; } /* behind the copy on narrow screens: keep it quiet */
   .hero__content { padding-right: var(--rp-gutter); }
   .hero__cue { display: none; }
   .spec { grid-template-columns: 1fr; gap: 24px; }

@@ -33,6 +33,8 @@ CROPS = {
     "hall-aisle":       (2,  (0.00, 0.00, 1.00, 0.50)),
     "storefront":       (27, (0.07, 0.08, 0.73, 0.72)),
     "storefront-angle": (25, (0.00, 0.00, 0.62, 1.00)),
+    # hero background — AI-generated shop interior (16:10, quiet centre for the copy), used whole
+    "hero-interior":    ("ai-shop-interior.png", (0.00, 0.00, 1.00, 1.00)),
     # collection — tight on the stones: no table, box walls or signs
     "amethyst-cathedrals": (6, (0.49, 0.53, 0.805, 0.92)),
     "celestite":        (26, (0.70, 0.71, 0.95, 0.98)),
@@ -53,7 +55,7 @@ CROPS = {
 }
 
 # Crops that only find clean stone in a small patch; cards show them at most ~430px wide
-SMALL_CROPS = {"raw-minerals": 1000, "celestite": 1200}
+SMALL_CROPS = {"raw-minerals": 1000, "celestite": 1200, "hero-interior": 1500}
 
 # Macro details for the warehouse band (honest close-ups of the stock, no fluorescent rooms)
 MACROS = {
@@ -151,8 +153,10 @@ def cinematic(img: Image.Image) -> Image.Image:
     return Image.fromarray((np.clip(a * np.clip(v, 0.35, 1)[..., None], 0, 1) * 255).astype(np.uint8))
 
 
-def load_crop(num: int, box: tuple, min_w: int = MIN_SRC_W) -> Image.Image:
-    img = ImageOps.exif_transpose(Image.open(SRC / f"rock park ({num}).jpeg")).convert("RGB")
+def load_crop(num, box: tuple, min_w: int = MIN_SRC_W) -> Image.Image:
+    # num is a shoot number ("rock park (N).jpeg") or a file name in the same folder
+    name = num if isinstance(num, str) else f"rock park ({num}).jpeg"
+    img = ImageOps.exif_transpose(Image.open(SRC / name)).convert("RGB")
     w, h = img.size
     x0, y0, x1, y1 = box
     crop = img.crop((int(x0 * w), int(y0 * h), int(x1 * w), int(y1 * h)))
@@ -165,6 +169,8 @@ def export(img: Image.Image, name: str, alpha=False) -> None:
     for old in OUT.glob(f"{name}-*.*"):
         old.unlink()
     widths = [w for w in WIDTHS if w <= img.width] or [img.width]
+    if widths[-1] < img.width < WIDTHS[-1]:
+        widths.append(img.width)  # a source between steps still ships at its full, true width
     for width in widths:  # true widths only, never a padded duplicate
         r = img.resize((width, round(img.height * width / img.width)), Image.LANCZOS)
         r.save(OUT / f"{name}-{width}.webp", "WEBP", quality=82, method=6)

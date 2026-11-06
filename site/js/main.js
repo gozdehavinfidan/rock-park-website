@@ -138,22 +138,5 @@
   dlg.addEventListener("click", (e) => e.target === dlg && close()); // backdrop click
   dlg.addEventListener("close", () => current && $(".card__open", current).focus());
 
-  /* ------------------------------------------------------------------
-     Light / dark switch (light is the default; the choice is remembered)
-     ------------------------------------------------------------------ */
-  const themeBtn = $(".bar__theme");
-  const themeMeta = $('meta[name="theme-color"]');
-  const applyTheme = (t) => {
-    root.setAttribute("data-theme", t);
-    themeBtn.setAttribute("aria-pressed", t === "dark");
-    themeMeta.setAttribute("content", t === "dark" ? "#141317" : "#fdf8fd");
-  };
-  applyTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light");
-  themeBtn.addEventListener("click", () => {
-    const t = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    applyTheme(t);
-    try { localStorage.setItem("rp-theme", t); } catch (e) { /* private mode: still switches for this visit */ }
-  });
-
   $("#year").textContent = new Date().getFullYear();
 })();

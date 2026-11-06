@@ -46,10 +46,9 @@
   // Copy lifts away as the page scrolls
   gsap.to(".hero__content", { yPercent: -18, opacity: 0, ease: "none",
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 0.6 } });
-  // The drawn stones turn slowly against each other as the hero scrolls away
-  const heroScrub = { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 };
-  gsap.to(".agate--a", { rotation: 14, yPercent: -10, ease: "none", scrollTrigger: heroScrub });
-  gsap.to(".agate--b", { rotation: -12, yPercent: 12, ease: "none", scrollTrigger: heroScrub });
+  // The shop photos sink a little slower than the page, a light parallax
+  gsap.to(".hero__media", { yPercent: 14, ease: "none",
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 } });
 
   // Everything below the hero is wired in idle time, keeping the first paint and input responsive
   const belowFold = () => { try {
@@ -129,7 +128,20 @@
         trigger: sec, start: "top top", end: () => "+=" + innerHeight * 5, pin: ".theatre__pin", scrub: 0.8, animation: tl,
         invalidateOnRefresh: true,
       });
-      return () => { sec.classList.remove("is-staged"); stage.remove(); gsap.set([...specs, ...$$(".spec *", sec)], { clearProps: "all" }); };
+      // Skip: jump past the pin in one step; a smooth scroll would spin the whole prism on the way down
+      const skip = $(".theatre__skip", sec);
+      const onSkip = (e) => {
+        e.preventDefault();
+        const to = $("#collection");
+        let top = 0; // layout position: offsetTop ignores the sheet's slide-up transform
+        for (let el = to; el; el = el.offsetParent) top += el.offsetTop;
+        scrollTo({ top, behavior: "instant" });
+        const h = $("h2", to);
+        h.tabIndex = -1;
+        h.focus({ preventScroll: true });
+      };
+      skip.addEventListener("click", onSkip);
+      return () => { skip.removeEventListener("click", onSkip); sec.classList.remove("is-staged"); stage.remove(); gsap.set([...specs, ...$$(".spec *", sec)], { clearProps: "all" }); };
     });
     // Mobile: plates rise and sharpen as they enter
     mm.add("(max-width: 900px), (max-height: 719px)", () => {
